@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  background-color: #0B0F1A;
+  min-height: 100vh;
+  color: #E5E7EB;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
