@@ -11,6 +11,13 @@ import Contact from './pages/Contact';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
+// Feature pages
+import ChartsPage from './pages/features/ChartsPage';
+import IndicatorsPage from './pages/features/IndicatorsPage';
+import ExchangesPage from './pages/features/ExchangesPage';
+import TradingInterfacePage from './pages/features/TradingInterfacePage';
+import LiquidityAnalysisPage from './pages/features/LiquidityAnalysisPage';
+
 // Partnership pages
 import ReferralProgram from './pages/partnership/ReferralProgram';
 import B2B from './pages/partnership/B2B';
@@ -29,7 +36,15 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/features" element={<Features />} />
+          
+          {/* Feature Detail Pages */}
+          <Route path="/features/charts" element={<ChartsPage />} />
+          <Route path="/features/indicators" element={<IndicatorsPage />} />
+          <Route path="/features/exchanges" element={<ExchangesPage />} />
+          <Route path="/features/trading" element={<TradingInterfacePage />} />
+          <Route path="/features/liquidity" element={<LiquidityAnalysisPage />} />
           <Route path="/features/:slug" element={<FeatureDetail />} />
+          
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
