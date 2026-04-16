@@ -5,6 +5,7 @@ import { ChevronDown, Globe } from 'lucide-react';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -14,6 +15,50 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const featuresLinks = [
+    { name: 'Charts', path: '/features/charts' },
+    { name: 'Indicators', path: '/features/indicators' },
+    { name: 'Exchanges & Connections', path: '/features/exchanges' },
+    { name: 'Trading Interface', path: '/features/trading' },
+    { name: 'Liquidity Analysis', path: '/features/liquidity' }
+  ];
+
+  const partnershipLinks = [
+    { name: 'Referral Program', path: '/partnership/referral' },
+    { name: 'B2B', path: '/partnership/b2b' }
+  ];
+
+  const resourcesLinks = [
+    { name: 'Marketplace', path: '/resources/marketplace' },
+    { name: 'Quick Start', path: '/resources/quick-start' },
+    { name: 'Community', path: '/resources/community' },
+    { name: 'Help Center', path: '/resources/help' }
+  ];
+
+  const DropdownMenu = ({ links, isOpen }) => {
+    if (!isOpen) return null;
+    
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        className="absolute top-full left-0 mt-2 bg-[#0F172A]/95 backdrop-blur-xl border border-white/10 rounded-lg py-2 min-w-[220px] shadow-xl z-50"
+      >
+        {links.map((link) => (
+          <Link
+            key={link.path}
+            to={link.path}
+            className="block px-4 py-2 text-[#E5E7EB] hover:text-white hover:bg-white/5 transition-colors"
+            onClick={() => setActiveDropdown(null)}
+          >
+            {link.name}
+          </Link>
+        ))}
+      </motion.div>
+    );
+  };
 
   return (
     <motion.nav
@@ -26,34 +71,55 @@ const Navbar = () => {
     >
       <div className="max-w-[1480px] mx-auto px-8 py-4">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-[#7C3AED] to-[#00D4FF] rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">M</span>
-            </div>
-            <span className="text-white font-bold text-xl">METAS</span>
+          {/* Logo */}
+          <Link to="/" className="flex items-center">
+            <img src="/logo.png" alt="Metas Logo" className="h-10 w-auto" />
           </Link>
 
+          {/* Center Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <div className="relative group">
+            {/* Features Dropdown */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setActiveDropdown('features')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
               <button className="flex items-center gap-1 text-[#E5E7EB] hover:text-white transition-colors">
                 Features <ChevronDown size={16} />
               </button>
+              <DropdownMenu links={featuresLinks} isOpen={activeDropdown === 'features'} />
             </div>
+
             <Link to="/pricing" className="text-[#E5E7EB] hover:text-white transition-colors">
               Pricing
             </Link>
-            <div className="relative group">
+
+            {/* Partnership Dropdown */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setActiveDropdown('partnership')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
               <button className="flex items-center gap-1 text-[#E5E7EB] hover:text-white transition-colors">
                 Partnership <ChevronDown size={16} />
               </button>
+              <DropdownMenu links={partnershipLinks} isOpen={activeDropdown === 'partnership'} />
             </div>
-            <div className="relative group">
+
+            {/* Resources Dropdown */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setActiveDropdown('resources')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
               <button className="flex items-center gap-1 text-[#E5E7EB] hover:text-white transition-colors">
                 Resources <ChevronDown size={16} />
               </button>
+              <DropdownMenu links={resourcesLinks} isOpen={activeDropdown === 'resources'} />
             </div>
           </div>
 
+          {/* Right Side */}
           <div className="flex items-center gap-6">
             <button className="text-[#E5E7EB] hover:text-white transition-colors hidden md:block">
               Download

@@ -13,7 +13,7 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    // Form submission logic would go here
   };
 
   const handleChange = (e) => {

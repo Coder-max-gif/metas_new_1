@@ -40,6 +40,22 @@ const FeatureDetail = () => {
         'Trend confirmation'
       ]
     },
+    exchanges: {
+      title: 'Exchanges & Connections',
+      subtitle: 'Connect to 25+ Global Exchanges',
+      hero: 'Trade seamlessly across multiple markets from one platform',
+      benefits: [
+        'Connect to 25+ exchanges worldwide',
+        'Real-time market data streaming',
+        'Unified order management',
+        'Automatic connection failover'
+      ],
+      useCases: [
+        'Multi-market arbitrage',
+        'Global portfolio management',
+        'Cross-exchange analysis'
+      ]
+    },
     trading: {
       title: 'Trading Interface',
       subtitle: 'Professional Trading Platform',

@@ -11,6 +11,16 @@ import Contact from './pages/Contact';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
+// Partnership pages
+import ReferralProgram from './pages/partnership/ReferralProgram';
+import B2B from './pages/partnership/B2B';
+
+// Resources pages
+import Marketplace from './pages/resources/Marketplace';
+import QuickStart from './pages/resources/QuickStart';
+import Community from './pages/resources/Community';
+import HelpCenter from './pages/resources/HelpCenter';
+
 function App() {
   return (
     <div className="App">
@@ -25,6 +35,16 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          
+          {/* Partnership Routes */}
+          <Route path="/partnership/referral" element={<ReferralProgram />} />
+          <Route path="/partnership/b2b" element={<B2B />} />
+          
+          {/* Resources Routes */}
+          <Route path="/resources/marketplace" element={<Marketplace />} />
+          <Route path="/resources/quick-start" element={<QuickStart />} />
+          <Route path="/resources/community" element={<Community />} />
+          <Route path="/resources/help" element={<HelpCenter />} />
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -8,11 +8,8 @@ const Footer = () => {
       <div className="max-w-[1280px] mx-auto px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-[#7C3AED] to-[#00D4FF] rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">M</span>
-              </div>
-              <span className="text-white font-bold text-xl">METAS</span>
+            <div className="mb-4">
+              <img src="/logo.png" alt="Metas Logo" className="h-10 w-auto" />
             </div>
             <p className="text-[#9CA3AF] text-sm">
               Professional Order Flow & Volume Analysis Software for Active Traders
