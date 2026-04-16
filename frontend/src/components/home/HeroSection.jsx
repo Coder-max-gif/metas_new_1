@@ -100,13 +100,17 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >
-            {/* Trading UI Visual */}
+            {/* Trading UI Visual with Video */}
             <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br from-[#1a1147] to-[#0B0F1A] p-1">
-              <div className="aspect-[4/3] bg-gradient-to-br from-[#7C3AED]/30 via-[#ec4899]/30 to-[#00D4FF]/30 rounded-xl flex items-center justify-center">
-                <div className="text-center">
-                  <TrendingUp size={64} className="mx-auto mb-4 text-white/40" />
-                  <p className="text-white/60">Trading Interface Preview</p>
-                </div>
+              <div className="aspect-[4/3] rounded-xl overflow-hidden bg-black">
+                <iframe
+                  src="https://player.vimeo.com/video/1094325471?autoplay=1&loop=1&muted=1&background=1&controls=0"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen"
+                  allowFullScreen
+                  className="w-full h-full"
+                  title="Trading Interface Preview"
+                ></iframe>
               </div>
             </div>
 

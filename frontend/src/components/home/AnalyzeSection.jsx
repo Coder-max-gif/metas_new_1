@@ -31,11 +31,18 @@ const AnalyzeSection = () => {
             </div>
           </AnimatedSection>
 
-          {/* Right Content - Trading Desk Image */}
+          {/* Right Content - Trading Desk Video */}
           <AnimatedSection delay={0.2}>
             <div className="rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br from-[#1a1147] to-[#0B0F1A] p-1">
-              <div className="aspect-[4/3] bg-gradient-to-br from-[#0B0F1A] via-[#1a1147] to-[#0B0F1A] rounded-xl flex items-center justify-center">
-                <BarChart3 size={80} className="text-white/40" />
+              <div className="aspect-[4/3] rounded-xl overflow-hidden bg-black">
+                <iframe
+                  src="https://player.vimeo.com/video/1094325471?autoplay=1&loop=1&muted=1&background=1&controls=0"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen"
+                  allowFullScreen
+                  className="w-full h-full"
+                  title="ATAS Tools Demo"
+                ></iframe>
               </div>
             </div>
           </AnimatedSection>
