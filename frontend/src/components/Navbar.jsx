@@ -44,18 +44,20 @@ const Navbar = () => {
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -10 }}
-        className="absolute top-full left-0 mt-2 bg-[#0F172A]/95 backdrop-blur-xl border border-white/10 rounded-lg py-2 min-w-[220px] shadow-xl z-50"
+        className="absolute top-full left-0 pt-2 z-50"
       >
-        {links.map((link) => (
-          <Link
-            key={link.path}
-            to={link.path}
-            className="block px-4 py-2 text-[#E5E7EB] hover:text-white hover:bg-white/5 transition-colors"
-            onClick={() => setActiveDropdown(null)}
-          >
-            {link.name}
-          </Link>
-        ))}
+        <div className="bg-[#0F172A]/95 backdrop-blur-xl border border-white/10 rounded-lg py-2 min-w-[220px] shadow-xl">
+          {links.map((link) => (
+            <Link
+              key={link.path}
+              to={link.path}
+              className="block px-4 py-2 text-[#E5E7EB] hover:text-white hover:bg-white/5 transition-colors"
+              onClick={() => setActiveDropdown(null)}
+            >
+              {link.name}
+            </Link>
+          ))}
+        </div>
       </motion.div>
     );
   };
@@ -80,11 +82,11 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-8">
             {/* Features Dropdown */}
             <div 
-              className="relative"
+              className="relative group"
               onMouseEnter={() => setActiveDropdown('features')}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              <button className="flex items-center gap-1 text-[#E5E7EB] hover:text-white transition-colors">
+              <button className="flex items-center gap-1 text-[#E5E7EB] hover:text-white transition-colors py-2">
                 Features <ChevronDown size={16} />
               </button>
               <DropdownMenu links={featuresLinks} isOpen={activeDropdown === 'features'} />
@@ -96,11 +98,11 @@ const Navbar = () => {
 
             {/* Partnership Dropdown */}
             <div 
-              className="relative"
+              className="relative group"
               onMouseEnter={() => setActiveDropdown('partnership')}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              <button className="flex items-center gap-1 text-[#E5E7EB] hover:text-white transition-colors">
+              <button className="flex items-center gap-1 text-[#E5E7EB] hover:text-white transition-colors py-2">
                 Partnership <ChevronDown size={16} />
               </button>
               <DropdownMenu links={partnershipLinks} isOpen={activeDropdown === 'partnership'} />
@@ -108,11 +110,11 @@ const Navbar = () => {
 
             {/* Resources Dropdown */}
             <div 
-              className="relative"
+              className="relative group"
               onMouseEnter={() => setActiveDropdown('resources')}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              <button className="flex items-center gap-1 text-[#E5E7EB] hover:text-white transition-colors">
+              <button className="flex items-center gap-1 text-[#E5E7EB] hover:text-white transition-colors py-2">
                 Resources <ChevronDown size={16} />
               </button>
               <DropdownMenu links={resourcesLinks} isOpen={activeDropdown === 'resources'} />
