@@ -5,6 +5,7 @@ import Features from './pages/Features';
 import FeatureDetail from './pages/FeatureDetail';
 import Pricing from './pages/Pricing';
 import Login from './pages/Login';
+import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -12,11 +13,9 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
 // Feature pages
-import ChartsPage from './pages/features/ChartsPage';
 import IndicatorsPage from './pages/features/IndicatorsPage';
-import ExchangesPage from './pages/features/ExchangesPage';
-import TradingInterfacePage from './pages/features/TradingInterfacePage';
-import LiquidityAnalysisPage from './pages/features/LiquidityAnalysisPage';
+import AlgorithmPage from './pages/features/AlgorithmPage';
+import AIAnalystPage from './pages/features/AIAnalystPage';
 
 // Partnership pages
 import ReferralProgram from './pages/partnership/ReferralProgram';
@@ -38,15 +37,14 @@ function App() {
           <Route path="/features" element={<Features />} />
           
           {/* Feature Detail Pages */}
-          <Route path="/features/charts" element={<ChartsPage />} />
           <Route path="/features/indicators" element={<IndicatorsPage />} />
-          <Route path="/features/exchanges" element={<ExchangesPage />} />
-          <Route path="/features/trading" element={<TradingInterfacePage />} />
-          <Route path="/features/liquidity" element={<LiquidityAnalysisPage />} />
+          <Route path="/features/algorithm" element={<AlgorithmPage />} />
+          <Route path="/features/ai-analyst" element={<AIAnalystPage />} />
           <Route path="/features/:slug" element={<FeatureDetail />} />
           
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />

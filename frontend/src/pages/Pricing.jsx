@@ -6,16 +6,31 @@ import AnimatedSection from '../components/AnimatedSection';
 const Pricing = () => {
   const plans = [
     {
+      name: 'Starter',
+      price: '$19',
+      period: '/month',
+      features: [
+        'Basic charts',
+        'Volume Profile',
+        '5 connections',
+        'Essential indicators',
+        'Market data',
+        'Email support'
+      ],
+      popular: false
+    },
+    {
       name: 'Pro',
       price: '$29',
       period: '/month',
       features: [
+        'Everything in Starter',
         'Footprint charts',
-        'Volume Profile',
         '10 connections',
         'Basic indicators',
         'Smart Tape',
-        'Market Replay'
+        'Market Replay',
+        'Priority support'
       ],
       popular: false
     },
@@ -28,23 +43,27 @@ const Pricing = () => {
         '25+ connections',
         '240+ indicators',
         'Smart DOM',
+        'AI Analyst',
+        'Algorithm Trading',
         'Advanced analytics',
-        'Priority support',
-        'Custom development'
+        'Custom development',
+        '24/7 Premium support'
       ],
       popular: true
     }
   ];
 
   const comparisonFeatures = [
-    { feature: 'Footprint Charts', pro: true, elite: true },
-    { feature: 'Volume Profile', pro: true, elite: true },
-    { feature: 'Exchange Connections', pro: '10', elite: '25+' },
-    { feature: 'Indicators', pro: 'Basic', elite: '240+' },
-    { feature: 'Smart DOM', pro: false, elite: true },
-    { feature: 'Market Replay', pro: true, elite: true },
-    { feature: 'Custom Development', pro: false, elite: true },
-    { feature: 'Priority Support', pro: false, elite: true }
+    { feature: 'Footprint Charts', starter: false, pro: true, elite: true },
+    { feature: 'Volume Profile', starter: true, pro: true, elite: true },
+    { feature: 'Exchange Connections', starter: '5', pro: '10', elite: '25+' },
+    { feature: 'Indicators', starter: 'Essential', pro: 'Basic', elite: '240+' },
+    { feature: 'Smart DOM', starter: false, pro: false, elite: true },
+    { feature: 'AI Analyst', starter: false, pro: false, elite: true },
+    { feature: 'Algorithm Trading', starter: false, pro: false, elite: true },
+    { feature: 'Market Replay', starter: false, pro: true, elite: true },
+    { feature: 'Custom Development', starter: false, pro: false, elite: true },
+    { feature: 'Priority Support', starter: false, pro: true, elite: true }
   ];
 
   return (
@@ -70,7 +89,7 @@ const Pricing = () => {
       {/* Pricing Cards */}
       <section className="py-24 bg-[#0B0F1A]">
         <div className="max-w-[1280px] mx-auto px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {plans.map((plan, index) => (
               <AnimatedSection key={index} delay={index * 0.1}>
                 <motion.div
@@ -133,6 +152,7 @@ const Pricing = () => {
                 <thead>
                   <tr className="border-b border-white/10">
                     <th className="text-left p-6 text-lg font-semibold">Feature</th>
+                    <th className="text-center p-6 text-lg font-semibold">Starter</th>
                     <th className="text-center p-6 text-lg font-semibold">Pro</th>
                     <th className="text-center p-6 text-lg font-semibold">Elite</th>
                   </tr>
@@ -141,6 +161,13 @@ const Pricing = () => {
                   {comparisonFeatures.map((item, index) => (
                     <tr key={index} className="border-b border-white/10 last:border-0">
                       <td className="p-6">{item.feature}</td>
+                      <td className="p-6 text-center">
+                        {typeof item.starter === 'boolean' ? (
+                          item.starter ? <Check className="mx-auto text-[#00D4FF]" size={20} /> : <span className="text-[#9CA3AF]">-</span>
+                        ) : (
+                          <span>{item.starter}</span>
+                        )}
+                      </td>
                       <td className="p-6 text-center">
                         {typeof item.pro === 'boolean' ? (
                           item.pro ? <Check className="mx-auto text-[#00D4FF]" size={20} /> : <span className="text-[#9CA3AF]">-</span>

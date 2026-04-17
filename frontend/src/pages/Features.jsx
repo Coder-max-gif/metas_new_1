@@ -7,28 +7,22 @@ import AnimatedSection from '../components/AnimatedSection';
 const Features = () => {
   const features = [
     {
-      slug: 'charts',
-      icon: <BarChart3 size={48} />,
-      title: 'Charts & Clusters',
-      description: 'Professional footprint charts with order flow visualization and cluster analysis'
-    },
-    {
       slug: 'indicators',
       icon: <TrendingUp size={48} />,
       title: 'Indicators',
       description: '240+ technical and volume-based indicators for comprehensive market analysis'
     },
     {
-      slug: 'trading',
+      slug: 'algorithm',
       icon: <Activity size={48} />,
-      title: 'Trading Interface',
-      description: 'Advanced trading interface with Smart DOM and one-click execution'
+      title: 'Algorithm Trading',
+      description: 'Build, test, and deploy sophisticated trading algorithms with enterprise-grade infrastructure'
     },
     {
-      slug: 'liquidity',
+      slug: 'ai-analyst',
       icon: <Zap size={48} />,
-      title: 'Liquidity Analysis',
-      description: 'Deep liquidity analysis tools to identify major player activities'
+      title: 'AI Analyst',
+      description: 'AI-powered insights and predictive analytics to enhance your trading decisions'
     }
   ];
 
@@ -61,7 +55,7 @@ const Features = () => {
       {/* Features Grid */}
       <section className="py-24 bg-[#0B0F1A]">
         <div className="max-w-[1280px] mx-auto px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <AnimatedSection key={index} delay={index * 0.1}>
                 <Link to={`/features/${feature.slug}`}>

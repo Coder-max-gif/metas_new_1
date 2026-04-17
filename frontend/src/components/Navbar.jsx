@@ -17,11 +17,9 @@ const Navbar = () => {
   }, []);
 
   const featuresLinks = [
-    { name: 'Charts', path: '/features/charts' },
     { name: 'Indicators', path: '/features/indicators' },
-    { name: 'Exchanges & Connections', path: '/features/exchanges' },
-    { name: 'Trading Interface', path: '/features/trading' },
-    { name: 'Liquidity Analysis', path: '/features/liquidity' }
+    { name: 'Algorithm', path: '/features/algorithm' },
+    { name: 'AI Analyst', path: '/features/ai-analyst' }
   ];
 
   const partnershipLinks = [
@@ -75,7 +73,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <img src="/logo.png" alt="Metas Logo" className="h-10 w-auto" />
+            <img src="/logo.png" alt="Metas Logo" className="h-14 w-auto" />
           </Link>
 
           {/* Center Navigation */}
@@ -133,9 +131,15 @@ const Navbar = () => {
             </button>
             <Link
               to="/login"
-              className="bg-white text-[#0B0F1A] px-6 py-2.5 rounded-lg font-medium hover:shadow-lg hover:shadow-white/20 transition-all hover:scale-105"
+              className="text-[#E5E7EB] hover:text-white transition-colors"
             >
               Sign In
+            </Link>
+            <Link
+              to="/signup"
+              className="bg-white text-[#0B0F1A] px-6 py-2.5 rounded-lg font-medium hover:shadow-lg hover:shadow-white/20 transition-all hover:scale-105"
+            >
+              Sign Up
             </Link>
           </div>
         </div>
