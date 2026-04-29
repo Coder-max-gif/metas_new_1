@@ -1,11 +1,39 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { ArrowRight, TrendingUp, Target, Zap, Activity } from 'lucide-react';
+import { ArrowRight, TrendingUp, Target, Zap, Activity, Loader2 } from 'lucide-react';
 
 const LivePerformanceSection = () => {
   const [counts, setCounts] = useState({ winRate: 0, signals: 0 });
+  const [streamLoaded, setStreamLoaded] = useState(false);
+  const [streamError, setStreamError] = useState(false);
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+
+  // Get domain from environment or use defaults
+  const getStreamParents = () => {
+    const parents = ['localhost', '127.0.0.1', 'emergent.run'];
+    
+    // Extract domain from REACT_APP_BACKEND_URL if available
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
+    if (backendUrl) {
+      try {
+        const url = new URL(backendUrl);
+        const domain = url.hostname;
+        if (domain && !parents.includes(domain)) {
+          parents.push(domain);
+        }
+        // Also add the root domain (e.g., emergentagent.com)
+        const rootDomain = domain.split('.').slice(-2).join('.');
+        if (rootDomain && !parents.includes(rootDomain)) {
+          parents.push(rootDomain);
+        }
+      } catch (e) {
+        console.error('Error parsing backend URL:', e);
+      }
+    }
+    
+    return parents.map(p => `parent=${p}`).join('&');
+  };
 
   // Animate counters when in view
   useEffect(() => {
@@ -254,14 +282,53 @@ const LivePerformanceSection = () => {
               </motion.div>
 
               {/* Stream Embed Container */}
-              <div className="relative z-10 aspect-video">
-                <iframe
-                  src="https://player.twitch.tv/?channel=tradeelite14&parent=localhost&parent=emergent.run&muted=false"
+              <div className="relative z-10 aspect-video bg-[#0B0F1A] rounded-3xl overflow-hidden">
+                {/* Loading Spinner */}
+                {!streamLoaded && !streamError && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-[#0B0F1A] z-30">
+                    <div className="text-center">
+                      <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                      >
+                        <Loader2 size={48} className="text-[#7C3AED] mx-auto mb-4" />
+                      </motion.div>
+                      <p className="text-gray-400 text-sm">Loading live stream...</p>
+                    </div>
+                  </div>
+                )}
+
+                {/* Offline Fallback */}
+                {streamError && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#1a1147] to-[#0B0F1A] z-30">
+                    <div className="text-center px-8">
+                      <div className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Activity size={32} className="text-gray-500" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-white mb-2">Live feed currently offline</h3>
+                      <p className="text-gray-400 text-sm">Stream will appear here when trading is active</p>
+                    </div>
+                  </div>
+                )}
+
+                {/* Twitch Stream Iframe */}
+                <motion.iframe
+                  src={`https://player.twitch.tv/?channel=tradeelite14&${getStreamParents()}&muted=true&autoplay=true`}
                   height="100%"
                   width="100%"
                   allowFullScreen
-                  className="rounded-3xl"
+                  frameBorder="0"
+                  scrolling="no"
+                  className="absolute inset-0 w-full h-full"
+                  style={{ borderRadius: 'inherit' }}
                   title="Live Trading Stream"
+                  onLoad={() => {
+                    setStreamLoaded(true);
+                  }}
+                  onError={() => setStreamError(true)}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: streamLoaded ? 1 : 0 }}
+                  transition={{ duration: 0.5 }}
                 />
               </div>
 
