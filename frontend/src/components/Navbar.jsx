@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ChevronDown, Globe } from 'lucide-react';
+import { ChevronDown, Globe, LogOut } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const location = useLocation();
+  const { isAuthenticated, logout, user } = useAuth();
+
+  const handleLogout = async () => {
+    await logout();
+    window.location.href = '/';
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -129,18 +136,39 @@ const Navbar = () => {
               <span className="hidden md:inline">English</span>
               <ChevronDown size={14} />
             </button>
-            <Link
-              to="/login"
-              className="text-[#E5E7EB] hover:text-white transition-colors"
-            >
-              Sign In
-            </Link>
-            <Link
-              to="/signup"
-              className="bg-white text-[#0B0F1A] px-6 py-2.5 rounded-lg font-medium hover:shadow-lg hover:shadow-white/20 transition-all hover:scale-105"
-            >
-              Sign Up
-            </Link>
+            
+            {isAuthenticated ? (
+              <>
+                <Link
+                  to="/dashboard"
+                  className="text-[#E5E7EB] hover:text-white transition-colors"
+                >
+                  Dashboard
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center gap-2 text-[#E5E7EB] hover:text-white transition-colors"
+                >
+                  <LogOut size={18} />
+                  <span className="hidden md:inline">Logout</span>
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  className="text-[#E5E7EB] hover:text-white transition-colors"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  to="/signup"
+                  className="bg-white text-[#0B0F1A] px-6 py-2.5 rounded-lg font-medium hover:shadow-lg hover:shadow-white/20 transition-all hover:scale-105"
+                >
+                  Sign Up
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>
