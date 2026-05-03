@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { ArrowRight, MessageCircle, Send } from 'lucide-react';
 import AnimatedSection from '../AnimatedSection';
 
@@ -46,14 +47,12 @@ const CTASection = () => {
       <div className="relative z-10 max-w-[1280px] mx-auto px-8 text-center">
         <AnimatedSection>
           <h2 className="text-5xl font-bold mb-6">
-            ADVANCED SOLUTION
+            START TRADING WITH
             <br />
-            FOR ORDER FLOW
-            <br />
-            & VOLUME ANALYSIS
+            <span className="text-[#7C3AED]">METATRADER 5</span>
           </h2>
           <p className="text-xl text-[#E5E7EB] mb-4 max-w-2xl mx-auto">
-            Gain an edge with volume and order flow software: discover what drives the market and see the actions of major players
+            Download our premium MT5 indicator and algorithm. Professional order flow analysis for serious traders.
           </p>
           <p className="text-[#E5E7EB] mb-8">support@metas.trade</p>
           <div className="flex items-center justify-center gap-4 mb-8">
@@ -70,13 +69,15 @@ const CTASection = () => {
               </svg>
             </a>
           </div>
-          <motion.button
-            className="bg-white text-[#0B0F1A] px-10 py-4 rounded-lg font-bold text-lg hover:shadow-2xl hover:shadow-white/30 transition-all"
-            whileHover={{ scale: 1.05, translateY: -4 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            Start for free <ArrowRight className="inline ml-2" size={20} />
-          </motion.button>
+          <Link to="/signup">
+            <motion.button
+              className="bg-white text-[#0B0F1A] px-10 py-4 rounded-lg font-bold text-lg hover:shadow-2xl hover:shadow-white/30 transition-all"
+              whileHover={{ scale: 1.05, translateY: -4 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Download for MT5 <ArrowRight className="inline ml-2" size={20} />
+            </motion.button>
+          </Link>
         </AnimatedSection>
       </div>
     </section>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { BarChart3, LineChart, Activity } from 'lucide-react';
 import AnimatedSection from '../AnimatedSection';
 
@@ -8,25 +9,28 @@ const FeaturesGrid = () => {
   
   const featureCards = [
     {
-      id: 'advanced-charting',
+      id: 'mt5-indicator',
       icon: <BarChart3 size={32} />,
-      title: 'Advanced Charting',
-      description: 'Professional footprint charts with order flow visualization',
-      color: '#7C3AED'
+      title: 'MT5 Premium Indicator',
+      description: 'Professional order flow indicator with real-time volume analysis',
+      color: '#7C3AED',
+      link: '/features/indicators'
     },
     {
-      id: 'volume-analysis',
-      icon: <LineChart size={32} />,
-      title: 'Volume Analysis',
-      description: 'Deep market insights through volume profile and heatmaps',
-      color: '#00D4FF'
-    },
-    {
-      id: 'realtime-data',
+      id: 'mt5-algorithm',
       icon: <Activity size={32} />,
-      title: 'Real-time Data',
-      description: 'Connect to 25+ exchanges for live market data',
-      color: '#ec4899'
+      title: 'MT5 Premium Algorithm',
+      description: 'Advanced automated trading system with risk management',
+      color: '#ec4899',
+      link: '/features/algorithm'
+    },
+    {
+      id: 'mt5-platform',
+      icon: <LineChart size={32} />,
+      title: 'MetaTrader 5 Ready',
+      description: 'Full MT5 compatibility with desktop support and instant setup',
+      color: '#00D4FF',
+      link: '/pricing'
     }
   ];
 
@@ -59,36 +63,37 @@ const FeaturesGrid = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            Powerful Features for Professional Traders
+            Premium MT5 Trading Suite
           </motion.h2>
         </AnimatedSection>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8" style={{ perspective: '1000px' }}>
           {featureCards.map((card, index) => (
             <AnimatedSection key={card.id} delay={index * 0.1}>
-              <motion.div
-                className="relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl p-8 hover:border-[#7C3AED]/50 transition-all cursor-pointer group"
-                initial={{ opacity: 0, y: 50, rotateX: 10 }}
-                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                viewport={{ once: true }}
-                transition={{ 
-                  duration: 0.8, 
-                  delay: index * 0.2,
-                  type: 'spring',
-                  stiffness: 100
-                }}
-                whileHover={{ 
-                  scale: 1.05,
-                  rotateY: 5,
-                  rotateX: -5,
-                  translateZ: 50,
-                  boxShadow: `0 30px 80px ${card.color}40`,
-                  transition: { duration: 0.4 }
-                }}
-                style={{
-                  transformStyle: 'preserve-3d'
-                }}
-              >
+              <Link to={card.link}>
+                <motion.div
+                  className="relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl p-8 hover:border-[#7C3AED]/50 transition-all cursor-pointer group"
+                  initial={{ opacity: 0, y: 50, rotateX: 10 }}
+                  whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    duration: 0.8, 
+                    delay: index * 0.2,
+                    type: 'spring',
+                    stiffness: 100
+                  }}
+                  whileHover={{ 
+                    scale: 1.05,
+                    rotateY: 5,
+                    rotateX: -5,
+                    translateZ: 50,
+                    boxShadow: `0 30px 80px ${card.color}40`,
+                    transition: { duration: 0.4 }
+                  }}
+                  style={{
+                    transformStyle: 'preserve-3d'
+                  }}
+                >
                 {/* Glowing Background on Hover */}
                 <motion.div
                   className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -154,7 +159,9 @@ const FeaturesGrid = () => {
                   />
                 ))}
               </motion.div>
-            </AnimatedSection>
+            </motion.div>
+            </Link>
+          </AnimatedSection>
           ))}
         </div>
       </div>

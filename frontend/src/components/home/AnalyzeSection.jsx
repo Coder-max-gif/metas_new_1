@@ -13,21 +13,19 @@ const AnalyzeSection = () => {
           {/* Left Content */}
           <AnimatedSection>
             <h2 className="text-5xl font-bold mb-6">
-              Analyze <span className="text-[#9CA3AF]">stocks</span>
+              Professional Trading
               <br />
-              with advanced
-              <br />
-              ATAS tools
+              for <span className="text-[#7C3AED]">MetaTrader 5</span>
             </h2>
             <div className="space-y-4 text-[#9CA3AF]">
               <p>
-                Leave technical analysis to the beginners. Start seeing what regular charts won't show you with professional volume analysis tools for traders.
+                Experience professional-grade order flow analysis designed exclusively for MT5. Our premium indicator reveals institutional activity in real-time.
               </p>
               <p>
-                When you understand how to use volume in trading, you'll uncover the real processes within each candlestick — patterns of large participants' activity and price formation structure.
+                Understanding volume dynamics is crucial for successful trading. See exactly where smart money is flowing with our advanced MT5 tools.
               </p>
               <p>
-                Order flow is an advanced market analysis method.
+                Order flow analysis is the edge professional traders use.
               </p>
             </div>
           </AnimatedSection>
