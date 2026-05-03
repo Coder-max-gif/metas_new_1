@@ -10,13 +10,13 @@ const HeroSection = () => {
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
   const features = [
-    { id: 'footprint', name: 'Footprint Order Flow Charts' },
-    { id: 'indicators', name: 'Indicators' },
-    { id: 'exchanges', name: 'Exchanges and Connections' },
-    { id: 'interface', name: 'Interface for Trading' },
-    { id: 'smart-tape', name: 'Smart Tape' },
-    { id: 'smart-dom', name: 'Smart DOM' },
-    { id: 'market-replay', name: 'Market Replay' }
+    { id: 'mt5-indicator', name: 'MT5 Premium Indicator' },
+    { id: 'mt5-algorithm', name: 'MT5 Premium Algorithm' },
+    { id: 'order-flow', name: 'Order Flow Analysis' },
+    { id: 'automation', name: 'Trading Automation' },
+    { id: 'risk-mgmt', name: 'Risk Management' },
+    { id: 'mt5-compatible', name: 'MetaTrader 5 Compatible' },
+    { id: 'real-time', name: 'Real-Time Execution' }
   ];
 
   return (
@@ -95,19 +95,21 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Professional Order Flow & Volume Analysis Software for Active Traders
+              Premium Indicator & Algorithm Suite for MetaTrader 5
             </motion.p>
             
-            <motion.button
-              className="bg-[#7C3AED] text-white px-8 py-4 rounded-lg font-semibold flex items-center gap-2 mb-12 hover:shadow-2xl hover:shadow-[#7C3AED]/50 transition-all"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              whileHover={{ scale: 1.05, translateY: -4 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Start for free <ArrowRight size={20} />
-            </motion.button>
+            <Link to="/signup">
+              <motion.button
+                className="bg-[#7C3AED] text-white px-8 py-4 rounded-lg font-semibold flex items-center gap-2 mb-12 hover:shadow-2xl hover:shadow-[#7C3AED]/50 transition-all"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                whileHover={{ scale: 1.05, translateY: -4 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Download for MT5 <ArrowRight size={20} />
+              </motion.button>
+            </Link>
 
             {/* Vertical Feature List with Stagger Animation */}
             <div className="space-y-0 border-l-2 border-white/10">

@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { ArrowRight, TrendingUp, Target, Zap, Activity, Loader2 } from 'lucide-react';
 
 const LivePerformanceSection = () => {
@@ -231,29 +232,33 @@ const LivePerformanceSection = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4">
-              <motion.button
-                className="relative bg-gradient-to-r from-[#7C3AED] to-[#00D4FF] text-white px-8 py-4 rounded-lg font-semibold text-lg overflow-hidden group"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  Start Free Trial <ArrowRight size={20} />
-                </span>
-                <motion.div
-                  className="absolute inset-0 bg-white"
-                  initial={{ x: '-100%', opacity: 0.2 }}
-                  whileHover={{ x: '100%' }}
-                  transition={{ duration: 0.6 }}
-                />
-              </motion.button>
+              <Link to="/signup">
+                <motion.button
+                  className="relative bg-gradient-to-r from-[#7C3AED] to-[#00D4FF] text-white px-8 py-4 rounded-lg font-semibold text-lg overflow-hidden group"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    Start Free Trial <ArrowRight size={20} />
+                  </span>
+                  <motion.div
+                    className="absolute inset-0 bg-white"
+                    initial={{ x: '-100%', opacity: 0.2 }}
+                    whileHover={{ x: '100%' }}
+                    transition={{ duration: 0.6 }}
+                  />
+                </motion.button>
+              </Link>
 
-              <motion.button
-                className="bg-white/10 backdrop-blur-lg border border-white/20 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/20 transition-all"
-                whileHover={{ scale: 1.05, borderColor: 'rgba(124, 58, 237, 0.5)' }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Learn More
-              </motion.button>
+              <Link to="/features">
+                <motion.button
+                  className="bg-white/10 backdrop-blur-lg border border-white/20 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/20 transition-all"
+                  whileHover={{ scale: 1.05, borderColor: 'rgba(124, 58, 237, 0.5)' }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Learn More
+                </motion.button>
+              </Link>
             </div>
           </motion.div>
 

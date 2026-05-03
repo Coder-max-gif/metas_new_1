@@ -9,20 +9,20 @@ const Features = () => {
     {
       slug: 'indicators',
       icon: <TrendingUp size={48} />,
-      title: 'Indicators',
-      description: '240+ technical and volume-based indicators for comprehensive market analysis'
+      title: 'MT5 Premium Indicator',
+      description: 'Professional order flow indicator with real-time volume analysis for MetaTrader 5'
     },
     {
       slug: 'algorithm',
       icon: <Activity size={48} />,
-      title: 'Algorithm Trading',
-      description: 'Build, test, and deploy sophisticated trading algorithms with enterprise-grade infrastructure'
+      title: 'MT5 Premium Algorithm',
+      description: 'Advanced automated trading system with risk management for MetaTrader 5'
     },
     {
       slug: 'ai-analyst',
       icon: <Zap size={48} />,
-      title: 'AI Analyst',
-      description: 'AI-powered insights and predictive analytics to enhance your trading decisions'
+      title: 'AI Market Analysis',
+      description: 'AI-powered insights and predictive analytics to enhance your MT5 trading decisions'
     }
   ];
 
@@ -39,14 +39,12 @@ const Features = () => {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-6xl font-bold mb-6">
-              ATAS is created
+              Premium MT5
               <br />
-              by traders
-              <br />
-              for traders
+              Trading Suite
             </h1>
             <p className="text-xl text-[#9CA3AF] max-w-3xl mx-auto">
-              Explore our comprehensive suite of professional trading tools designed to give you an edge in the markets
+              Professional trading tools designed exclusively for MetaTrader 5
             </p>
           </motion.div>
         </div>

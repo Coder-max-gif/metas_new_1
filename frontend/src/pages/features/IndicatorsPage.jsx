@@ -1,53 +1,38 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { TrendingUp, Activity, BarChart2, Gauge, CheckCircle, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Activity, CheckCircle, ArrowRight, Download } from 'lucide-react';
 import AnimatedSection from '../../components/AnimatedSection';
 
 const IndicatorsPage = () => {
-  const categories = [
-    {
-      id: 'volume',
-      icon: <BarChart2 size={40} />,
-      title: 'Volume Indicators',
-      count: '70+',
-      description: 'Volume Profile, Delta, Cumulative Delta, Volume Clusters, and more'
-    },
-    {
-      id: 'technical',
-      icon: <TrendingUp size={40} />,
-      title: 'Technical Indicators',
-      count: '100+',
-      description: 'Classic indicators like RSI, MACD, Bollinger Bands, Moving Averages'
-    },
-    {
-      id: 'custom',
-      icon: <Activity size={40} />,
-      title: 'Custom Indicators',
-      count: '50+',
-      description: 'Proprietary indicators developed specifically for order flow analysis'
-    },
-    {
-      id: 'advanced',
-      icon: <Gauge size={40} />,
-      title: 'Advanced Analytics',
-      count: '20+',
-      description: 'Market depth, liquidity analysis, and institutional order detection'
-    }
+  const features = [
+    'Real-time order flow analysis',
+    'Volume profile visualization',
+    'Institutional level detection',
+    'Multi-timeframe support',
+    'Customizable alerts',
+    'Advanced market depth',
+    'One-click installation',
+    'MT5 desktop compatible'
   ];
 
-  const popularIndicators = [
-    'Volume Profile',
-    'Delta Indicator',
-    'Cumulative Delta',
-    'Volume Clusters',
-    'Order Flow Imbalance',
-    'Market Delta',
-    'Absorption Indicator',
-    'Liquidity Heatmap',
-    'Time & Sales',
-    'VWAP',
-    'Volume Weighted',
-    'Smart Money Index'
+  const benefits = [
+    {
+      title: 'Professional Order Flow',
+      description: 'See exactly where institutional money is flowing in real-time'
+    },
+    {
+      title: 'Volume Analysis',
+      description: 'Advanced volume profile tools built specifically for MT5'
+    },
+    {
+      title: 'Smart Alerts',
+      description: 'Get notified when high-probability setups appear'
+    },
+    {
+      title: 'MT5 Optimized',
+      description: 'Designed from ground up for MetaTrader 5 performance'
+    }
   ];
 
   return (
@@ -62,130 +47,205 @@ const IndicatorsPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <p className="text-[#00D4FF] mb-4 text-lg">240+ Professional Indicators</p>
-            <h1 className="text-6xl font-bold mb-6">Indicators</h1>
+            <p className="text-[#00D4FF] mb-4 text-lg font-semibold">MetaTrader 5 Premium</p>
+            <h1 className="text-6xl md:text-7xl font-bold mb-6">
+              MT5 Premium
+              <br />
+              <span className="text-[#7C3AED]">Indicator</span>
+            </h1>
             <p className="text-2xl text-[#9CA3AF] max-w-3xl mx-auto">
-              Combine classic technical analysis with advanced volume analytics in one powerful workspace
+              Professional order flow indicator designed exclusively for MetaTrader 5
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Categories Grid */}
-      <section className="py-24 bg-[#0B0F1A]">
-        <div className="max-w-[1280px] mx-auto px-8">
-          <AnimatedSection>
-            <h2 className="text-4xl font-bold text-center mb-16">Indicator Categories</h2>
-          </AnimatedSection>
+      {/* 3D Download Section */}
+      <section className="py-32 bg-gradient-to-br from-[#0B0F1A] via-[#1a1147] to-[#0F172A] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          {[...Array(10)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-[#00D4FF] rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`
+              }}
+              animate={{
+                y: [0, -30, 0],
+                opacity: [0.2, 1, 0.2]
+              }}
+              transition={{
+                duration: 3 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 2
+              }}
+            />
+          ))}
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {categories.map((category, index) => (
-              <AnimatedSection key={category.id} delay={index * 0.1}>
+        <div className="max-w-[1280px] mx-auto px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left - 3D Animated Card */}
+            <AnimatedSection>
+              <div className="perspective-1000">
                 <motion.div
-                  className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl p-8"
-                  whileHover={{ scale: 1.02, translateY: -4 }}
+                  className="relative"
+                  initial={{ rotateY: -15, opacity: 0 }}
+                  animate={{ rotateY: 0, opacity: 1 }}
+                  transition={{ duration: 1 }}
+                  whileHover={{ 
+                    rotateY: 5, 
+                    rotateX: -5,
+                    scale: 1.05,
+                    transition: { duration: 0.3 }
+                  }}
+                  style={{ transformStyle: 'preserve-3d' }}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="text-[#7C3AED]">{category.icon}</div>
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <h3 className="text-2xl font-bold">{category.title}</h3>
-                        <span className="text-[#00D4FF] bg-[#00D4FF]/10 px-3 py-1 rounded-full text-sm font-semibold">
-                          {category.count}
-                        </span>
+                  {/* 3D Card */}
+                  <div className="relative bg-gradient-to-br from-[#7C3AED] via-[#8B5CF6] to-[#00D4FF] rounded-3xl p-12 shadow-2xl">
+                    {/* Animated Glow */}
+                    <motion.div
+                      className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#7C3AED]/50 to-[#00D4FF]/50 blur-2xl"
+                      animate={{
+                        opacity: [0.5, 1, 0.5],
+                        scale: [1, 1.1, 1]
+                      }}
+                      transition={{ duration: 3, repeat: Infinity }}
+                    />
+
+                    {/* Card Content */}
+                    <div className="relative z-10">
+                      <motion.div
+                        className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6"
+                        animate={{
+                          rotateY: [0, 360],
+                          scale: [1, 1.1, 1]
+                        }}
+                        transition={{ duration: 4, repeat: Infinity }}
+                      >
+                        <Activity size={48} className="text-white" />
+                      </motion.div>
+
+                      <h3 className="text-3xl font-bold text-white mb-4">
+                        MT5 Premium Indicator
+                      </h3>
+                      
+                      <div className="bg-white/10 backdrop-blur-sm rounded-xl px-4 py-2 inline-block mb-6">
+                        <span className="text-white font-semibold text-sm">MetaTrader 5 Desktop</span>
                       </div>
-                      <p className="text-[#9CA3AF]">{category.description}</p>
+
+                      <p className="text-white/90 text-lg mb-8">
+                        Professional order flow analysis tool with advanced volume visualization
+                      </p>
+
+                      <div className="flex items-center gap-3 text-white">
+                        <CheckCircle size={20} />
+                        <span>Full MT5 Compatibility</span>
+                      </div>
                     </div>
                   </div>
+
+                  {/* 3D Depth Layer */}
+                  <div 
+                    className="absolute inset-0 bg-gradient-to-br from-[#7C3AED] to-[#00D4FF] rounded-3xl opacity-30 blur-sm"
+                    style={{ transform: 'translateZ(-20px)' }}
+                  />
                 </motion.div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Popular Indicators */}
-      <section className="py-24 bg-[#0F172A]">
-        <div className="max-w-[1280px] mx-auto px-8">
-          <AnimatedSection>
-            <h2 className="text-4xl font-bold text-center mb-16">Popular Indicators</h2>
-          </AnimatedSection>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {popularIndicators.map((indicator, index) => (
-              <AnimatedSection key={`indicator-${index}`} delay={index * 0.05}>
-                <motion.div
-                  className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl p-4 hover:border-[#7C3AED]/50 cursor-pointer transition-all"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="text-[#00D4FF] flex-shrink-0" size={16} />
-                    <span className="text-sm">{indicator}</span>
-                  </div>
-                </motion.div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features */}
-      <section className="py-24 bg-[#0B0F1A]">
-        <div className="max-w-[1280px] mx-auto px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <AnimatedSection>
-              <div className="rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br from-[#1a1147] to-[#0B0F1A] p-1">
-                <div className="aspect-video bg-gradient-to-br from-[#7C3AED]/20 via-[#ec4899]/20 to-[#00D4FF]/20 rounded-xl flex items-center justify-center">
-                  <Activity size={120} className="text-white/40" />
-                </div>
               </div>
             </AnimatedSection>
 
+            {/* Right - Download Content */}
             <AnimatedSection delay={0.2}>
-              <h2 className="text-4xl font-bold mb-6">Powerful Analysis Tools</h2>
-              <p className="text-[#9CA3AF] mb-6">
-                Our indicators are designed to work seamlessly with order flow data, providing insights that traditional indicators simply cannot offer.
-              </p>
-              <ul className="space-y-4">
-                {[
-                  'Real-time calculations',
-                  'Multi-timeframe analysis',
-                  'Custom alert configurations',
-                  'Backtesting capabilities'
-                ].map((feature, index) => (
-                  <motion.li
-                    key={`adv-feature-${index}`}
-                    className="flex items-center gap-3"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
+              <div>
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+                  Download for
+                  <br />
+                  <span className="text-[#00D4FF]">MetaTrader 5</span>
+                </h2>
+
+                <p className="text-xl text-gray-300 mb-8">
+                  Start using our premium indicator on your MT5 platform today. One-click installation, instant activation.
+                </p>
+
+                {/* Features List */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+                  {features.map((feature, index) => (
+                    <motion.div
+                      key={index}
+                      className="flex items-center gap-3"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.4 + index * 0.1 }}
+                    >
+                      <CheckCircle size={20} className="text-[#00D4FF] flex-shrink-0" />
+                      <span className="text-gray-300">{feature}</span>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* CTA Button */}
+                <Link to="/signup">
+                  <motion.button
+                    className="bg-gradient-to-r from-[#7C3AED] to-[#00D4FF] text-white px-10 py-5 rounded-xl font-bold text-lg flex items-center gap-3 hover:shadow-2xl hover:shadow-[#7C3AED]/50 transition-all"
+                    whileHover={{ scale: 1.05, translateY: -4 }}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    <CheckCircle className="text-[#00D4FF]" size={20} />
-                    <span>{feature}</span>
-                  </motion.li>
-                ))}
-              </ul>
+                    <Download size={24} />
+                    Download for MT5
+                    <ArrowRight size={24} />
+                  </motion.button>
+                </Link>
+
+                <p className="text-gray-500 text-sm mt-4">
+                  Compatible with MetaTrader 5 Desktop • Windows & Mac
+                </p>
+              </div>
             </AnimatedSection>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
+      {/* Benefits Grid */}
+      <section className="py-24 bg-[#0F172A]">
+        <div className="max-w-[1280px] mx-auto px-8">
+          <AnimatedSection>
+            <h2 className="text-4xl font-bold text-center mb-16 text-white">Why Choose Our MT5 Indicator</h2>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {benefits.map((benefit, index) => (
+              <AnimatedSection key={index} delay={index * 0.1}>
+                <motion.div
+                  className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 hover:border-[#7C3AED]/50 transition-all"
+                  whileHover={{ scale: 1.03, translateY: -8 }}
+                >
+                  <h3 className="text-2xl font-bold mb-3 text-white">{benefit.title}</h3>
+                  <p className="text-gray-400">{benefit.description}</p>
+                </motion.div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
       <section className="py-24 bg-gradient-to-br from-[#7C3AED]/20 via-[#ec4899]/10 to-[#00D4FF]/20">
         <div className="max-w-[1280px] mx-auto px-8 text-center">
           <AnimatedSection>
-            <h2 className="text-4xl font-bold mb-6">Access 240+ professional indicators</h2>
-            <p className="text-xl text-[#9CA3AF] mb-8 max-w-2xl mx-auto">
-              Start analyzing markets like a professional with our comprehensive indicator suite
+            <h2 className="text-4xl font-bold mb-6 text-white">Ready to Trade Smarter?</h2>
+            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+              Join professional traders using our MT5 indicator
             </p>
-            <motion.button
-              className="bg-[#7C3AED] text-white px-10 py-4 rounded-lg font-bold text-lg hover:shadow-2xl hover:shadow-[#7C3AED]/50 transition-all"
-              whileHover={{ scale: 1.05, translateY: -4 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Start Free Trial <ArrowRight className="inline ml-2" size={20} />
-            </motion.button>
+            <Link to="/signup">
+              <motion.button
+                className="bg-white text-[#0B0F1A] px-10 py-4 rounded-lg font-bold text-lg hover:shadow-2xl hover:shadow-white/30 transition-all"
+                whileHover={{ scale: 1.05, translateY: -4 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Download for MT5
+              </motion.button>
+            </Link>
           </AnimatedSection>
         </div>
       </section>

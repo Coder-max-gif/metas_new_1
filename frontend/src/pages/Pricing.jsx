@@ -1,69 +1,78 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Check, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Check, ArrowRight, Activity, Zap, Package } from 'lucide-react';
 import AnimatedSection from '../components/AnimatedSection';
 
 const Pricing = () => {
   const plans = [
     {
-      name: 'Starter',
-      price: '$19',
+      name: 'MT5 Indicator',
+      price: '$49',
       period: '/month',
+      icon: <Activity size={32} />,
+      gradient: 'from-[#7C3AED] to-[#00D4FF]',
       features: [
-        'Basic charts',
-        'Volume Profile',
-        '5 connections',
-        'Essential indicators',
-        'Market data',
-        'Email support'
+        'Premium MT5 Indicator',
+        'Real-time volume analysis',
+        'Order flow visualization',
+        'Multi-timeframe support',
+        'Custom alerts',
+        'MT5 Desktop compatible',
+        'Email support',
+        'Installation guide'
       ],
       popular: false
     },
     {
-      name: 'Pro',
-      price: '$29',
+      name: 'MT5 Algorithm',
+      price: '$69',
       period: '/month',
+      icon: <Zap size={32} />,
+      gradient: 'from-[#ec4899] to-[#7C3AED]',
       features: [
-        'Everything in Starter',
-        'Footprint charts',
-        '10 connections',
-        'Basic indicators',
-        'Smart Tape',
-        'Market Replay',
+        'Premium MT5 Algorithm',
+        'Automated execution',
+        'Risk management tools',
+        'Backtesting engine',
+        'Position sizing',
+        'Performance analytics',
+        'MT5 Desktop compatible',
         'Priority support'
       ],
       popular: false
     },
     {
-      name: 'Elite',
-      price: '$59',
+      name: 'MT5 Pro Bundle',
+      price: '$99',
       period: '/month',
+      icon: <Package size={32} />,
+      gradient: 'from-[#00D4FF] to-[#7C3AED]',
       features: [
-        'Everything in Pro',
-        '25+ connections',
-        '240+ indicators',
-        'Smart DOM',
-        'AI Analyst',
-        'Algorithm Trading',
+        'MT5 Indicator included',
+        'MT5 Algorithm included',
+        'All premium features',
+        'Priority support 24/7',
+        'Multiple account connections',
         'Advanced analytics',
-        'Custom development',
-        '24/7 Premium support'
+        'Custom strategy setup',
+        'Direct developer access',
+        'Lifetime updates'
       ],
       popular: true
     }
   ];
 
   const comparisonFeatures = [
-    { feature: 'Footprint Charts', starter: false, pro: true, elite: true },
-    { feature: 'Volume Profile', starter: true, pro: true, elite: true },
-    { feature: 'Exchange Connections', starter: '5', pro: '10', elite: '25+' },
-    { feature: 'Indicators', starter: 'Essential', pro: 'Basic', elite: '240+' },
-    { feature: 'Smart DOM', starter: false, pro: false, elite: true },
-    { feature: 'AI Analyst', starter: false, pro: false, elite: true },
-    { feature: 'Algorithm Trading', starter: false, pro: false, elite: true },
-    { feature: 'Market Replay', starter: false, pro: true, elite: true },
-    { feature: 'Custom Development', starter: false, pro: false, elite: true },
-    { feature: 'Priority Support', starter: false, pro: true, elite: true }
+    { feature: 'MT5 Premium Indicator', indicator: true, algorithm: false, bundle: true },
+    { feature: 'MT5 Premium Algorithm', indicator: false, algorithm: true, bundle: true },
+    { feature: 'Volume Analysis', indicator: true, algorithm: false, bundle: true },
+    { feature: 'Automated Trading', indicator: false, algorithm: true, bundle: true },
+    { feature: 'Backtesting Engine', indicator: false, algorithm: true, bundle: true },
+    { feature: 'Risk Management', indicator: false, algorithm: true, bundle: true },
+    { feature: 'Multiple Accounts', indicator: false, algorithm: false, bundle: true },
+    { feature: 'Priority Support', indicator: false, algorithm: true, bundle: true },
+    { feature: 'Custom Development', indicator: false, algorithm: false, bundle: true }
   ];
 
   return (
@@ -78,9 +87,9 @@ const Pricing = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-6xl font-bold mb-6">Simple, Transparent Pricing</h1>
+            <h1 className="text-6xl font-bold mb-6">MetaTrader 5 Pricing</h1>
             <p className="text-xl text-[#9CA3AF] max-w-3xl mx-auto">
-              Choose the plan that fits your trading needs. All plans include a 14-day free trial.
+              Choose the perfect MT5 solution for your trading needs. All plans include 14-day free trial.
             </p>
           </motion.div>
         </div>
@@ -93,18 +102,25 @@ const Pricing = () => {
             {plans.map((plan, index) => (
               <AnimatedSection key={index} delay={index * 0.1}>
                 <motion.div
-                  className={`relative rounded-2xl p-8 ${
+                  className={`relative rounded-2xl p-8 h-full flex flex-col ${
                     plan.popular
                       ? 'bg-gradient-to-br from-[#7C3AED]/20 to-[#00D4FF]/20 border-2 border-[#7C3AED]'
                       : 'bg-white/5 backdrop-blur-lg border border-white/10'
                   }`}
-                  whileHover={{ scale: 1.02, translateY: -8 }}
+                  whileHover={{ scale: 1.03, translateY: -8 }}
                 >
                   {plan.popular && (
                     <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#7C3AED] to-[#00D4FF] text-white px-6 py-1 rounded-full text-sm font-semibold">
-                      Most Popular
+                      Best Value
                     </div>
                   )}
+
+                  {/* Icon */}
+                  <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${plan.gradient} flex items-center justify-center mb-6`}>
+                    <div className="text-white">
+                      {plan.icon}
+                    </div>
+                  </div>
                   
                   <h3 className="text-3xl font-bold mb-2">{plan.name}</h3>
                   <div className="flex items-baseline mb-6">
@@ -112,7 +128,7 @@ const Pricing = () => {
                     <span className="text-[#9CA3AF] ml-2">{plan.period}</span>
                   </div>
                   
-                  <ul className="space-y-4 mb-8">
+                  <ul className="space-y-4 mb-8 flex-grow">
                     {plan.features.map((feature, i) => (
                       <li key={i} className="flex items-center gap-3">
                         <Check className="text-[#00D4FF] flex-shrink-0" size={20} />
@@ -121,17 +137,19 @@ const Pricing = () => {
                     ))}
                   </ul>
                   
-                  <motion.button
-                    className={`w-full py-4 rounded-lg font-semibold ${
-                      plan.popular
-                        ? 'bg-[#7C3AED] text-white hover:shadow-2xl hover:shadow-[#7C3AED]/50'
-                        : 'bg-white/10 text-white hover:bg-white/20'
-                    } transition-all`}
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    Start Free Trial
-                  </motion.button>
+                  <Link to="/signup" className="block">
+                    <motion.button
+                      className={`w-full py-4 rounded-lg font-semibold ${
+                        plan.popular
+                          ? 'bg-gradient-to-r from-[#7C3AED] to-[#00D4FF] text-white hover:shadow-2xl hover:shadow-[#7C3AED]/50'
+                          : 'bg-white/10 text-white hover:bg-white/20'
+                      } transition-all`}
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      Download for MT5
+                    </motion.button>
+                  </Link>
                 </motion.div>
               </AnimatedSection>
             ))}
@@ -143,7 +161,7 @@ const Pricing = () => {
       <section className="py-24 bg-[#0F172A]">
         <div className="max-w-[1280px] mx-auto px-8">
           <AnimatedSection>
-            <h2 className="text-4xl font-bold text-center mb-12">Compare Plans</h2>
+            <h2 className="text-4xl font-bold text-center mb-12">Compare MT5 Plans</h2>
           </AnimatedSection>
 
           <AnimatedSection delay={0.2}>
@@ -152,9 +170,24 @@ const Pricing = () => {
                 <thead>
                   <tr className="border-b border-white/10">
                     <th className="text-left p-6 text-lg font-semibold">Feature</th>
-                    <th className="text-center p-6 text-lg font-semibold">Starter</th>
-                    <th className="text-center p-6 text-lg font-semibold">Pro</th>
-                    <th className="text-center p-6 text-lg font-semibold">Elite</th>
+                    <th className="text-center p-6 text-lg font-semibold">
+                      <div className="flex items-center justify-center gap-2">
+                        <Activity size={20} className="text-[#00D4FF]" />
+                        Indicator
+                      </div>
+                    </th>
+                    <th className="text-center p-6 text-lg font-semibold">
+                      <div className="flex items-center justify-center gap-2">
+                        <Zap size={20} className="text-[#7C3AED]" />
+                        Algorithm
+                      </div>
+                    </th>
+                    <th className="text-center p-6 text-lg font-semibold">
+                      <div className="flex items-center justify-center gap-2">
+                        <Package size={20} className="text-[#00D4FF]" />
+                        Pro Bundle
+                      </div>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -162,24 +195,24 @@ const Pricing = () => {
                     <tr key={index} className="border-b border-white/10 last:border-0">
                       <td className="p-6">{item.feature}</td>
                       <td className="p-6 text-center">
-                        {typeof item.starter === 'boolean' ? (
-                          item.starter ? <Check className="mx-auto text-[#00D4FF]" size={20} /> : <span className="text-[#9CA3AF]">-</span>
+                        {item.indicator ? (
+                          <Check className="mx-auto text-[#00D4FF]" size={20} />
                         ) : (
-                          <span>{item.starter}</span>
+                          <span className="text-[#9CA3AF]">-</span>
                         )}
                       </td>
                       <td className="p-6 text-center">
-                        {typeof item.pro === 'boolean' ? (
-                          item.pro ? <Check className="mx-auto text-[#00D4FF]" size={20} /> : <span className="text-[#9CA3AF]">-</span>
+                        {item.algorithm ? (
+                          <Check className="mx-auto text-[#7C3AED]" size={20} />
                         ) : (
-                          <span>{item.pro}</span>
+                          <span className="text-[#9CA3AF]">-</span>
                         )}
                       </td>
                       <td className="p-6 text-center">
-                        {typeof item.elite === 'boolean' ? (
-                          item.elite ? <Check className="mx-auto text-[#00D4FF]" size={20} /> : <span className="text-[#9CA3AF]">-</span>
+                        {item.bundle ? (
+                          <Check className="mx-auto text-[#00D4FF]" size={20} />
                         ) : (
-                          <span>{item.elite}</span>
+                          <span className="text-[#9CA3AF]">-</span>
                         )}
                       </td>
                     </tr>
@@ -195,17 +228,19 @@ const Pricing = () => {
       <section className="py-24 bg-gradient-to-br from-[#7C3AED]/20 via-[#ec4899]/10 to-[#00D4FF]/20">
         <div className="max-w-[1280px] mx-auto px-8 text-center">
           <AnimatedSection>
-            <h2 className="text-4xl font-bold mb-6">Ready to elevate your trading?</h2>
+            <h2 className="text-4xl font-bold mb-6">Ready to elevate your MT5 trading?</h2>
             <p className="text-xl text-[#9CA3AF] mb-8 max-w-2xl mx-auto">
-              Start your 14-day free trial today. No credit card required.
+              Start your 14-day free trial today. Download instantly for MetaTrader 5.
             </p>
-            <motion.button
-              className="bg-white text-[#0B0F1A] px-10 py-4 rounded-lg font-bold text-lg hover:shadow-2xl hover:shadow-white/30 transition-all"
-              whileHover={{ scale: 1.05, translateY: -4 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Start Free Trial <ArrowRight className="inline ml-2" size={20} />
-            </motion.button>
+            <Link to="/signup">
+              <motion.button
+                className="bg-white text-[#0B0F1A] px-10 py-4 rounded-lg font-bold text-lg hover:shadow-2xl hover:shadow-white/30 transition-all inline-flex items-center gap-2"
+                whileHover={{ scale: 1.05, translateY: -4 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Download for MT5 <ArrowRight className="inline ml-2" size={20} />
+              </motion.button>
+            </Link>
           </AnimatedSection>
         </div>
       </section>

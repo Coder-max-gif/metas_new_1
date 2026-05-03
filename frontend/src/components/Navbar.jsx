@@ -121,9 +121,9 @@ const Navbar = () => {
 
           {/* Right Side */}
           <div className="flex items-center gap-6">
-            <button className="text-[#E5E7EB] hover:text-white transition-colors hidden md:block">
+            <Link to="/features/indicators" className="text-[#E5E7EB] hover:text-white transition-colors hidden md:block">
               Download
-            </button>
+            </Link>
             <button className="flex items-center gap-2 text-[#E5E7EB] hover:text-white transition-colors">
               <Globe size={18} />
               <span className="hidden md:inline">English</span>

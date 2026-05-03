@@ -6,32 +6,32 @@ import AnimatedSection from '../AnimatedSection';
 const StatsSection = () => {
   const stats = [
     { 
-      id: 'connections',
-      number: 25,
-      suffix: '+',
-      title: 'Connections', 
-      description: 'to global stock, futures, and cryptocurrency exchanges' 
+      id: 'mt5-compatibility',
+      number: 1,
+      suffix: '',
+      title: 'MT5 Platform', 
+      description: 'Full MetaTrader 5 compatibility with desktop support' 
     },
     { 
-      id: 'volume-tools',
-      number: 70,
-      suffix: '+',
-      title: 'Volume Analysis Tools', 
-      description: 'from Volume Profile analysis tool to Heatmap — everything to enhance your trading insights' 
+      id: 'premium-indicator',
+      number: 1,
+      suffix: '',
+      title: 'Premium Indicator', 
+      description: 'Professional order flow indicator designed for MT5'
     },
     { 
-      id: 'indicators',
-      number: 240,
-      suffix: '+',
-      title: 'Indicators', 
-      description: 'combine classic technical analysis with advanced volume analytics in one powerful workspace' 
+      id: 'algorithm',
+      number: 1,
+      suffix: '',
+      title: 'Powerful Algorithm', 
+      description: 'Advanced automated trading system for MetaTrader 5' 
     },
     { 
-      id: 'cluster-variations',
-      number: 400,
-      suffix: '+',
-      title: 'Cluster variations (Footprint)', 
-      description: 'explore volume cluster charting software to look inside each bar and understand why the price changes' 
+      id: 'execution',
+      number: 100,
+      suffix: '%',
+      title: 'Execution Speed', 
+      description: 'Lightning-fast order execution and signal processing' 
     }
   ];
 
