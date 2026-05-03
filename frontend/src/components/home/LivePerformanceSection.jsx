@@ -232,7 +232,7 @@ const LivePerformanceSection = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4">
-              <Link to="/signup">
+              <Link to="/login">
                 <motion.button
                   className="relative bg-gradient-to-r from-[#7C3AED] to-[#00D4FF] text-white px-8 py-4 rounded-lg font-semibold text-lg overflow-hidden group"
                   whileHover={{ scale: 1.05 }}

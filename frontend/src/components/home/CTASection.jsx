@@ -69,7 +69,7 @@ const CTASection = () => {
               </svg>
             </a>
           </div>
-          <Link to="/signup">
+          <Link to="/login">
             <motion.button
               className="bg-white text-[#0B0F1A] px-10 py-4 rounded-lg font-bold text-lg hover:shadow-2xl hover:shadow-white/30 transition-all"
               whileHover={{ scale: 1.05, translateY: -4 }}

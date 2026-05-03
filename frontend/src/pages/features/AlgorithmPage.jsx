@@ -185,7 +185,7 @@ const AlgorithmPage = () => {
                 </div>
 
                 {/* CTA Button */}
-                <Link to="/signup">
+                <Link to="/login">
                   <motion.button
                     className="bg-gradient-to-r from-[#ec4899] to-[#7C3AED] text-white px-10 py-5 rounded-xl font-bold text-lg flex items-center gap-3 hover:shadow-2xl hover:shadow-[#7C3AED]/50 transition-all"
                     whileHover={{ scale: 1.05, translateY: -4 }}
@@ -237,7 +237,7 @@ const AlgorithmPage = () => {
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
               Join traders using our MT5 algorithm for consistent results
             </p>
-            <Link to="/signup">
+            <Link to="/login">
               <motion.button
                 className="bg-white text-[#0B0F1A] px-10 py-4 rounded-lg font-bold text-lg hover:shadow-2xl hover:shadow-white/30 transition-all"
                 whileHover={{ scale: 1.05, translateY: -4 }}

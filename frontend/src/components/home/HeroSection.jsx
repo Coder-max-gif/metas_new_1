@@ -98,7 +98,7 @@ const HeroSection = () => {
               Premium Indicator & Algorithm Suite for MetaTrader 5
             </motion.p>
             
-            <Link to="/signup">
+            <Link to="/login">
               <motion.button
                 className="bg-[#7C3AED] text-white px-8 py-4 rounded-lg font-semibold flex items-center gap-2 mb-12 hover:shadow-2xl hover:shadow-[#7C3AED]/50 transition-all"
                 initial={{ opacity: 0, y: 20 }}
@@ -107,7 +107,7 @@ const HeroSection = () => {
                 whileHover={{ scale: 1.05, translateY: -4 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Download for MT5 <ArrowRight size={20} />
+                Start for Free <ArrowRight size={20} />
               </motion.button>
             </Link>
 

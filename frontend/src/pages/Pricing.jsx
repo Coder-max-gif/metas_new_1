@@ -137,7 +137,7 @@ const Pricing = () => {
                     ))}
                   </ul>
                   
-                  <Link to="/signup" className="block">
+                  <Link to="/login" className="block">
                     <motion.button
                       className={`w-full py-4 rounded-lg font-semibold ${
                         plan.popular
@@ -232,7 +232,7 @@ const Pricing = () => {
             <p className="text-xl text-[#9CA3AF] mb-8 max-w-2xl mx-auto">
               Start your 14-day free trial today. Download instantly for MetaTrader 5.
             </p>
-            <Link to="/signup">
+            <Link to="/login">
               <motion.button
                 className="bg-white text-[#0B0F1A] px-10 py-4 rounded-lg font-bold text-lg hover:shadow-2xl hover:shadow-white/30 transition-all inline-flex items-center gap-2"
                 whileHover={{ scale: 1.05, translateY: -4 }}
