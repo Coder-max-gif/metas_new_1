@@ -159,7 +159,6 @@ const FeaturesGrid = () => {
                   />
                 ))}
               </motion.div>
-            </motion.div>
             </Link>
           </AnimatedSection>
           ))}
