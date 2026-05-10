@@ -1,7 +1,10 @@
 {
   "build": {
-    "command": "cd frontend && npm install --legacy-peer-deps && npm run build",
+    "command": "cd frontend && npm ci --legacy-peer-deps || npm install --legacy-peer-deps && npm run build",
     "output_dir": "frontend/build"
+  },
+  "environment_variables": {
+    "NODE_VERSION": "18.17.0"
   },
   "headers": [
     {

@@ -8,6 +8,19 @@ This project is already configured for Cloudflare Pages deployment. Follow these
 - A GitHub/GitLab account with this repository
 - A Cloudflare account (free tier works!)
 
+### ⚠️ IMPORTANT: Fix Build Errors
+
+If you get build errors, **set the Node.js version** in Cloudflare Pages:
+
+1. Go to your Cloudflare Pages project
+2. Go to **Settings** → **Environment variables**
+3. Add variable:
+   - **Name**: `NODE_VERSION`
+   - **Value**: `18.17.0`
+4. **Redeploy**
+
+---
+
 ### Method 1: Deploy via Cloudflare Dashboard (Recommended)
 
 1. **Go to Cloudflare Pages**
@@ -22,13 +35,16 @@ This project is already configured for Cloudflare Pages deployment. Follow these
 3. **Configure build settings**
    - **Project name**: Choose a name (e.g., `metas-trading`)
    - **Production branch**: `main`
-   - **Framework preset**: `Create React App`
+   - **Framework preset**: `None` (or leave blank)
    - **Build command**: `cd frontend && npm install --legacy-peer-deps && npm run build`
    - **Build output directory**: `frontend/build`
    - **Root directory**: (leave empty)
 
-4. **Environment variables (optional)**
-   - If you need API endpoints, add them here (e.g., `REACT_APP_BACKEND_URL`)
+4. **Add Environment Variable (CRITICAL!)**
+   Before deploying, add this environment variable:
+   - Go to **Environment variables** (during setup or later in Settings)
+   - **Name**: `NODE_VERSION`
+   - **Value**: `18.17.0`
 
 5. **Deploy!**
    - Click "Save and Deploy"
