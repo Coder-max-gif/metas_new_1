@@ -67,6 +67,8 @@ export const dashboardAPI = {
 };
 
 export const downloadAPI = {
+  listProducts: () => api.get('/api/downloads/products'),
+  getHistory: (limit = 20) => api.get(`/api/downloads/history?limit=${limit}`),
   downloadIndicator: () => api.get('/api/downloads/indicator', { responseType: 'blob' }),
   downloadAlgorithm: () => api.get('/api/downloads/algorithm', { responseType: 'blob' }),
 };
