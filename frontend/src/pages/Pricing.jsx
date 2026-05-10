@@ -22,7 +22,8 @@ const Pricing = () => {
         'Email support',
         'Installation guide'
       ],
-      popular: false
+      popular: false,
+      link: '/features/indicators'
     },
     {
       name: 'MT5 Algorithm',
@@ -40,7 +41,8 @@ const Pricing = () => {
         'MT5 Desktop compatible',
         'Priority support'
       ],
-      popular: false
+      popular: false,
+      link: '/features/algorithm'
     },
     {
       name: 'MT5 Pro Bundle',
@@ -59,7 +61,8 @@ const Pricing = () => {
         'Direct developer access',
         'Lifetime updates'
       ],
-      popular: true
+      popular: true,
+      link: '/login'
     }
   ];
 
@@ -137,7 +140,7 @@ const Pricing = () => {
                     ))}
                   </ul>
                   
-                  <Link to="/login" className="block">
+                  <Link to={plan.link} className="block">
                     <motion.button
                       className={`w-full py-4 rounded-lg font-semibold ${
                         plan.popular

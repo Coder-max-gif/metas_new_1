@@ -421,20 +421,22 @@ const HeroSection = () => {
                 <Link to="/features" className="text-[#00D4FF] flex items-center gap-2 hover:gap-3 transition-all">
                   Learn more <ArrowRight size={18} />
                 </Link>
-                <motion.button
-                  className="mt-4 bg-[#7C3AED] text-white px-6 py-3 rounded-lg font-semibold w-full hover:shadow-lg hover:shadow-[#7C3AED]/50 transition-all relative overflow-hidden"
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                    animate={{ x: ['-100%', '200%'] }}
-                    transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
-                  />
-                  <span className="relative z-10 flex items-center justify-center gap-2">
-                    Start for free <ArrowRight size={18} />
-                  </span>
-                </motion.button>
+                <Link to="/login" className="block mt-4">
+                  <motion.button
+                    className="bg-[#7C3AED] text-white px-6 py-3 rounded-lg font-semibold w-full hover:shadow-lg hover:shadow-[#7C3AED]/50 transition-all relative overflow-hidden"
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                      animate={{ x: ['-100%', '200%'] }}
+                      transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+                    />
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      Start for free <ArrowRight size={18} />
+                    </span>
+                  </motion.button>
+                </Link>
               </div>
             </motion.div>
           </motion.div>
