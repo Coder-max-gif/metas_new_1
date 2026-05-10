@@ -1,0 +1,25 @@
+{
+  "build": {
+    "command": "cd frontend && npm install --legacy-peer-deps && npm run build",
+    "output_dir": "frontend/build"
+  },
+  "headers": [
+    {
+      "source": "/*",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
+    }
+  ]
+}
