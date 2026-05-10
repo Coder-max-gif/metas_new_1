@@ -2,22 +2,11 @@
 
 ## Deploying to Cloudflare Pages
 
-This project is already configured for Cloudflare Pages deployment. Follow these steps:
+This project is now simplified for Cloudflare Pages - NO special Node.js version needed!
 
 ### Prerequisites
 - A GitHub/GitLab account with this repository
 - A Cloudflare account (free tier works!)
-
-### ⚠️ IMPORTANT: Fix Build Errors
-
-If you get build errors, **set the Node.js version** in Cloudflare Pages:
-
-1. Go to your Cloudflare Pages project
-2. Go to **Settings** → **Environment variables**
-3. Add variable:
-   - **Name**: `NODE_VERSION`
-   - **Value**: `18.17.0`
-4. **Redeploy**
 
 ---
 
@@ -32,21 +21,15 @@ If you get build errors, **set the Node.js version** in Cloudflare Pages:
    - Authorize Cloudflare to access your repository
    - Select this repository
 
-3. **Configure build settings**
+3. **Configure build settings (SIMPLE!)**
    - **Project name**: Choose a name (e.g., `metas-trading`)
    - **Production branch**: `main`
-   - **Framework preset**: `None` (or leave blank)
+   - **Framework preset**: `Create React App` (or leave blank)
    - **Build command**: `cd frontend && npm install --legacy-peer-deps && npm run build`
    - **Build output directory**: `frontend/build`
    - **Root directory**: (leave empty)
 
-4. **Add Environment Variable (CRITICAL!)**
-   Before deploying, add this environment variable:
-   - Go to **Environment variables** (during setup or later in Settings)
-   - **Name**: `NODE_VERSION`
-   - **Value**: `18.17.0`
-
-5. **Deploy!**
+4. **Deploy!**
    - Click "Save and Deploy"
    - Wait for the build to complete (2-5 minutes)
    - Your site will be live at `https://[project-name].pages.dev`
