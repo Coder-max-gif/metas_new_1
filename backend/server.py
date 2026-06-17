@@ -64,20 +64,39 @@ if fastapi_available:
     app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
     # CORS Configuration
-    allowed_origins = [
-        os.getenv("FRONTEND_URL", "http://localhost:3000"),
+    # Support comma-separated FRONTEND_URLS env var or single FRONTEND_URL
+    frontend_urls_env = os.getenv("FRONTEND_URLS") or os.getenv("FRONTEND_URL")
+    allowed_origins = []
+    if frontend_urls_env:
+        # split comma-separated values and strip whitespace
+        allowed_origins = [u.strip() for u in frontend_urls_env.split(",") if u.strip()]
+
+    # Always include common localhost dev origins
+    dev_origins = [
         "http://localhost:3000",
         "http://127.0.0.1:3000",
         "http://localhost:3001",
-        "http://127.0.0.1:3001"
+        "http://127.0.0.1:3001",
     ]
+
+    # Ensure production domains are allowed if not already present
+    prod_origins = [
+        "https://metas.one",
+        "https://www.metas.one",
+    ]
+
+    # Compose final allowed origins list preserving order and uniqueness
+    for origin in (allowed_origins + dev_origins + prod_origins):
+        if origin not in allowed_origins:
+            allowed_origins.append(origin)
+
     logger.info(f"Allowed CORS origins: {allowed_origins}")
 
     app.add_middleware(
         CORSMiddleware,
         allow_origins=allowed_origins,
         allow_credentials=True,
-        allow_methods=["*"],
+        allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
         allow_headers=["*"],
     )
 
