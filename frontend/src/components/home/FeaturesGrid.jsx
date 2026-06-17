@@ -27,27 +27,7 @@ const FeaturesGrid = () => {
       gradient: 'from-[#ec4899] to-[#7C3AED]',
       delay: 0.2
     },
-    {
-      icon: <Target size={40} />,
-      title: 'Precision Trading',
-      description: 'High accuracy entry and exit signals',
-      gradient: 'from-[#7C3AED] to-[#00D4FF]',
-      delay: 0.3
-    },
-    {
-      icon: <Shield size={40} />,
-      title: 'Risk Management',
-      description: 'Advanced risk management tools and strategies',
-      gradient: 'from-[#00D4FF] to-[#ec4899]',
-      delay: 0.4
-    },
-    {
-      icon: <TrendingUp size={40} />,
-      title: 'Performance Tracking',
-      description: 'Detailed performance analytics and reporting',
-      gradient: 'from-[#ec4899] to-[#7C3AED]',
-      delay: 0.5
-    }
+    
   ];
 
   return (

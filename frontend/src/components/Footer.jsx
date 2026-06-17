@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div>
             <div className="mb-4">
-              <img src="/dark-background.png" alt="Metas Logo" className="h-12 w-auto max-w-[180px]" />
+              <img src="/dark-background.png" alt="Metas Logo" className="h-14 w-auto max-w-[180px] transform-gpu scale-105" />
             </div>
             <p className="text-[#9CA3AF] text-sm max-w-[280px]">
               Professional Order Flow & Volume Analysis Software for Active Traders

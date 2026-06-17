@@ -1,8 +1,76 @@
-import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import AnimatedSection from '../../components/AnimatedSection';
+
+const images = [
+  '/TMA.png',
+  '/B&S.png',
+  '/FP.png',
+  '/Sessions.png'
+];
+
+const Slideshow = ({ className = '' }) => {
+  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setIndex((i) => (i + 1) % images.length), 4000);
+    return () => clearInterval(id);
+  }, []);
+
+  const prev = () => setIndex((i) => (i - 1 + images.length) % images.length);
+  const next = () => setIndex((i) => (i + 1) % images.length);
+
+  return (
+    <div className={`w-full ${className}`}>
+      <div className="relative rounded-2xl overflow-hidden bg-black">
+        <AnimatePresence initial={false} mode="wait">
+          <motion.div
+            key={index}
+            className="w-full flex items-center justify-center bg-black"
+            initial={{ opacity: 0, scale: 1.03 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.98 }}
+            transition={{ duration: 0.8, ease: 'easeInOut' }}
+          >
+            <img
+              src={images[index]}
+              alt={`slide-${index}`}
+              className="block mx-auto max-w-full max-h-[360px] sm:max-h-[420px] md:max-h-[480px] lg:max-h-[380px] object-contain"
+            />
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Framed border / gloss */}
+        <div className="absolute inset-0 pointer-events-none rounded-2xl ring-1 ring-white/10 shadow-xl" />
+
+        {/* Prev / Next Controls */}
+        <div className="absolute left-3 top-1/2 -translate-y-1/2 z-20">
+          <button onClick={prev} aria-label="Previous slide" className="bg-white/10 hover:bg-white/20 text-white p-2 rounded-full backdrop-blur-sm">
+            ‹
+          </button>
+        </div>
+        <div className="absolute right-3 top-1/2 -translate-y-1/2 z-20">
+          <button onClick={next} aria-label="Next slide" className="bg-white/10 hover:bg-white/20 text-white p-2 rounded-full backdrop-blur-sm">
+            ›
+          </button>
+        </div>
+
+        {/* Dots */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setIndex(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className={`w-3 h-3 rounded-full ${i === index ? 'bg-white' : 'bg-white/30'}`}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const AnalyzeSection = () => {
   const { scrollYProgress } = useScroll();
@@ -54,20 +122,10 @@ const AnalyzeSection = () => {
           </AnimatedSection>
 
           {/* Right Content */}
-          <motion.div
-            className="relative"
-            style={{ x, scale }}
-          >
+          <motion.div className="relative" style={{ x, scale }}>
             <div className="relative rounded-2xl overflow-hidden bg-white border border-[#7C3AED]/30">
-              {/* Video */}
-              <video 
-                src="/intro.mp4" 
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-auto"
-              />
+              {/* Slideshow of images */}
+              <Slideshow className="w-full h-auto" />
             </div>
           </motion.div>
         </div>

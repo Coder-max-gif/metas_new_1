@@ -7,7 +7,7 @@ import { paymentsAPI } from '../services/api';
 import AnimatedSection from '../components/AnimatedSection';
 
 const PRODUCTS = [
-  {id: 'ind-arrows', name: 'Arrows Indicator', price: 49, period: '6 months'},
+  {id: 'ind-tma', name: 'TMA Band Indicator', price: 49, period: '6 months'},
   {id: 'ind-bs-numbers', name: 'B&S Numbers Indicator', price: 49, period: '6 months'},
   {id: 'ind-future-pattern', name: 'Future Pattern Indicator', price: 49, period: '6 months'},
   {id: 'ind-session', name: 'Session Indicator', price: 49, period: '6 months'},

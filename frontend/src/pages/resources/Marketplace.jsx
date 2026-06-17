@@ -6,16 +6,18 @@ import AnimatedSection from '../../components/AnimatedSection';
 const Marketplace = () => {
   const products = [
     {
-      id: 'ind-arrows',
-      name: 'Arrows Indicator',
+      id: 'ind-tma',
+      name: 'TMA Band Indicator',
+      image: '/TMA.png',
       price: '$49',
       rating: 4.9,
       sales: 1250,
-      description: 'Precise entry signals with color-coded arrows for clear trading decisions'
+      description: 'Precise entry signals using TMA bands for clearer trading decisions'
     },
     {
       id: 'ind-bs-numbers',
       name: 'B&S Numbers Indicator',
+      image: '/B&S.png',
       price: '$49',
       rating: 4.8,
       sales: 890,
@@ -24,6 +26,7 @@ const Marketplace = () => {
     {
       id: 'ind-future-pattern',
       name: 'Future Pattern Indicator',
+      image: '/FP.png',
       price: '$49',
       rating: 4.7,
       sales: 2100,
@@ -32,6 +35,7 @@ const Marketplace = () => {
     {
       id: 'ind-session',
       name: 'Session Indicator',
+      image: '/Sessions.png',
       price: '$49',
       rating: 4.9,
       sales: 1800,
@@ -70,8 +74,8 @@ const Marketplace = () => {
                   className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl p-6 hover:border-[#7C3AED]/50 transition-all"
                   whileHover={{ scale: 1.02, translateY: -4 }}
                 >
-                  <div className="aspect-video bg-gradient-to-br from-[#7C3AED]/20 to-[#00D4FF]/20 rounded-lg mb-4 flex items-center justify-center">
-                    <TrendingUp size={48} className="text-white/40" />
+                  <div className="aspect-video rounded-lg mb-4 overflow-hidden bg-[#090b14]">
+                    <img src={product.image} alt={product.name} className="h-full w-full object-cover" />
                   </div>
                   <h3 className="text-xl font-bold mb-2">{product.name}</h3>
                   <div className="flex items-center gap-2 mb-3">

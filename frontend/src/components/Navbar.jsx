@@ -85,7 +85,7 @@ const Navbar = () => {
             <img 
               src={isLightMode ? '/light-background.png' : '/dark-background.png'} 
               alt="Metas Logo" 
-              className="h-16 w-auto" 
+              className="h-16 w-auto transform-gpu scale-105" 
             />
           </Link>
 

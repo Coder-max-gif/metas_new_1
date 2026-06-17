@@ -11,14 +11,14 @@ import { useScrollHeader } from '../hooks/useScrollHeader';
 
 const indicators = [
   {
-    id: 'ind-arrows',
-    name: 'Arrows Indicator',
+    id: 'ind-tma',
+    name: 'TMA Band Indicator',
     price: '$49',
     period: '/6 months',
     icon: <Activity size={32} />,
     gradient: 'from-[#7C3AED] to-[#00D4FF]',
     features: [
-      'Real-time entry arrows',
+      'Real-time TMA band entries',
       'Multi-timeframe support',
       'Custom alerts',
       'MT5 Desktop compatible',

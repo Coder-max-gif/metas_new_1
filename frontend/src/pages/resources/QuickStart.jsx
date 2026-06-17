@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Rocket, CheckCircle, Play } from 'lucide-react';
 import AnimatedSection from '../../components/AnimatedSection';
@@ -55,26 +56,56 @@ const QuickStart = () => {
       {/* Steps */}
       <section className="py-24 bg-[#0B0F1A]">
         <div className="max-w-[1280px] mx-auto px-8">
-          <div className="space-y-8">
-            {steps.map((step, index) => (
-              <AnimatedSection key={step.id} delay={index * 0.1}>
-                <div className="flex gap-6 items-start">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#7C3AED] to-[#00D4FF] rounded-full flex items-center justify-center text-xl font-bold flex-shrink-0">
-                    {index + 1}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                id: 'contact',
+                title: 'Contact Us',
+                description: 'Reach out directly for support or custom setup assistance.',
+                actionText: 'Email support',
+                actionLink: 'mailto:support@example.com',
+                external: true
+              },
+              {
+                id: 'buy',
+                title: 'Buy Metas',
+                description: 'Choose the right plan and purchase access to the platform.',
+                actionText: 'View pricing',
+                actionLink: '/pricing',
+                external: false
+              },
+              {
+                id: 'community',
+                title: 'Join Telegram Community',
+                description: 'Connect with traders, ask questions, and get updates instantly.',
+                actionText: 'Join Telegram',
+                actionLink: 'https://t.me/your_telegram_group',
+                external: true
+              }
+            ].map((item, index) => (
+              <AnimatedSection key={item.id} delay={index * 0.1}>
+                <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl p-8 h-full flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
+                    <p className="text-[#9CA3AF] mb-6">{item.description}</p>
                   </div>
-                  <div className="flex-1 bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl p-6">
-                    <div className="flex items-start justify-between mb-3">
-                      <h3 className="text-2xl font-bold">{step.title}</h3>
-                      <span className="text-sm text-[#00D4FF] bg-[#00D4FF]/10 px-3 py-1 rounded-full">
-                        {step.time}
-                      </span>
-                    </div>
-                    <p className="text-[#9CA3AF] mb-4">{step.description}</p>
-                    <button className="flex items-center gap-2 text-[#7C3AED] hover:text-white transition-colors">
-                      <Play size={16} />
-                      Watch Tutorial
-                    </button>
-                  </div>
+                  {item.external ? (
+                    <a
+                      href={item.actionLink}
+                      className="inline-flex items-center gap-2 text-[#00D4FF] hover:text-white font-semibold"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {item.actionText} <Play size={16} />
+                    </a>
+                  ) : (
+                    <Link
+                      to={item.actionLink}
+                      className="inline-flex items-center gap-2 text-[#00D4FF] hover:text-white font-semibold"
+                    >
+                      {item.actionText} <Play size={16} />
+                    </Link>
+                  )}
                 </div>
               </AnimatedSection>
             ))}

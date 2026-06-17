@@ -28,12 +28,12 @@ const Home = () => {
           {/* Indicator and Algo Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             {/* Indicators Card */}
-            <div className="bg-gray-50 border border-gray-200 rounded-2xl p-8 hover:shadow-md transition-all duration-300">
-              <h3 className="text-2xl font-bold text-[#0B0F1A] mb-4">
+            <div className="bg-[#01050d]/95 border border-white/10 rounded-2xl p-8 backdrop-blur-xl hover:shadow-[0_20px_80px_rgba(0,0,0,0.25)] transition-all duration-300">
+              <h3 className="text-2xl font-bold text-white mb-4">
                 Indicators
               </h3>
-              <p className="text-gray-600 mb-6">
-                Advanced trading indicators for MetaTrader 5 including Arrows, B&S Numbers, Future Pattern, and Session
+              <p className="text-slate-300 mb-6">
+                Advanced trading indicators for MetaTrader 5 including TMA bands, B&S Numbers, Future Pattern, and Session
               </p>
               <div className="text-[#7C3AED] font-semibold mb-6">
                 $49 for 6 months
@@ -47,11 +47,11 @@ const Home = () => {
             </div>
 
             {/* Algorithm Card */}
-            <div className="bg-gray-50 border border-gray-200 rounded-2xl p-8 hover:shadow-md transition-all duration-300">
-              <h3 className="text-2xl font-bold text-[#0B0F1A] mb-4">
+            <div className="bg-[#01050d]/95 border border-white/10 rounded-2xl p-8 backdrop-blur-xl hover:shadow-[0_20px_80px_rgba(0,0,0,0.25)] transition-all duration-300">
+              <h3 className="text-2xl font-bold text-white mb-4">
                 Algorithm
               </h3>
-              <p className="text-gray-600 mb-6">
+              <p className="text-slate-300 mb-6">
                 Premium trading algorithm with automated execution and risk management tools
               </p>
               <div className="text-[#7C3AED] font-semibold mb-6">

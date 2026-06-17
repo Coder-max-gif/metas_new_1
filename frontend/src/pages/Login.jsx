@@ -17,6 +17,8 @@ const Login = () => {
     confirmPassword: ''
   });
   
+  const [showPassword, setShowPassword] = useState(false);
+  const [showSignupPasswords, setShowSignupPasswords] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [agreed, setAgreed] = useState(false);
@@ -211,7 +213,7 @@ const Login = () => {
                     <div className="relative">
                       <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-[#9CA3AF]" size={20} />
                       <input
-                        type="password"
+                        type={showPassword ? 'text' : 'password'}
                         value={loginData.password}
                         onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
                         className="w-full bg-white/5 border border-white/10 rounded-lg pl-12 pr-4 py-3 focus:outline-none focus:border-[#7C3AED] transition-colors text-white"
@@ -220,6 +222,15 @@ const Login = () => {
                         disabled={loading}
                       />
                     </div>
+                    <label className="inline-flex items-center gap-2 mt-3 text-sm text-[#9CA3AF]">
+                      <input
+                        type="checkbox"
+                        checked={showPassword}
+                        onChange={(e) => setShowPassword(e.target.checked)}
+                        className="h-4 w-4 rounded border-white/10 bg-white/5"
+                      />
+                      Show password
+                    </label>
                   </div>
 
                   <motion.button
@@ -293,7 +304,7 @@ const Login = () => {
                     <div className="relative">
                       <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-[#9CA3AF]" size={20} />
                       <input
-                        type="password"
+                        type={showSignupPasswords ? 'text' : 'password'}
                         value={signupData.password}
                         onChange={(e) => setSignupData({ ...signupData, password: e.target.value })}
                         className="w-full bg-white/5 border border-white/10 rounded-lg pl-12 pr-4 py-3 focus:outline-none focus:border-[#7C3AED] transition-colors text-white"
@@ -309,7 +320,7 @@ const Login = () => {
                     <div className="relative">
                       <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-[#9CA3AF]" size={20} />
                       <input
-                        type="password"
+                        type={showSignupPasswords ? 'text' : 'password'}
                         value={signupData.confirmPassword}
                         onChange={(e) => setSignupData({ ...signupData, confirmPassword: e.target.value })}
                         className="w-full bg-white/5 border border-white/10 rounded-lg pl-12 pr-4 py-3 focus:outline-none focus:border-[#7C3AED] transition-colors text-white"
@@ -318,6 +329,15 @@ const Login = () => {
                         disabled={loading}
                       />
                     </div>
+                    <label className="inline-flex items-center gap-2 mt-3 text-sm text-[#9CA3AF]">
+                      <input
+                        type="checkbox"
+                        checked={showSignupPasswords}
+                        onChange={(e) => setShowSignupPasswords(e.target.checked)}
+                        className="h-4 w-4 rounded border-white/10 bg-white/5"
+                      />
+                      Show passwords
+                    </label>
                   </div>
 
                   <div className="flex items-start gap-3">

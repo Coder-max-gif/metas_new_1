@@ -67,7 +67,9 @@ if fastapi_available:
     allowed_origins = [
         os.getenv("FRONTEND_URL", "http://localhost:3000"),
         "http://localhost:3000",
-        "http://127.0.0.1:3000"
+        "http://127.0.0.1:3000",
+        "http://localhost:3001",
+        "http://127.0.0.1:3001"
     ]
     logger.info(f"Allowed CORS origins: {allowed_origins}")
 

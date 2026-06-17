@@ -7,13 +7,13 @@ import { useAuth } from '../../context/AuthContext';
 
 const indicators = [
   {
-    name: 'Arrows Indicator',
-    id: 'ind-arrows',
+    name: 'TMA Band Indicator',
+    id: 'ind-tma',
     price: '$49 for 6 months',
     icon: <Activity size={40} />,
     gradient: 'from-[#7C3AED] to-[#00D4FF]',
-    features: ['Real-time entry arrows', 'Multi-timeframe support', 'Custom alerts', 'MT5 compatible', 'Email support', 'Installation guide'],
-    description: 'Precise entry signals with color-coded arrows for clear trading decisions'
+    features: ['Real-time TMA band entries', 'Multi-timeframe support', 'Custom alerts', 'MT5 compatible', 'Email support', 'Installation guide'],
+    description: 'Precise entry signals using TMA bands for clearer trading decisions'
   },
   {
     name: 'B&S Numbers Indicator',
