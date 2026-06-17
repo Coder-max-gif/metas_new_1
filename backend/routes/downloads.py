@@ -10,24 +10,7 @@ from uuid import uuid4
 router = APIRouter(prefix="/api/downloads", tags=["Downloads"])
 file_service = FileService()
 
-PRODUCTS = {
-    "indicator": {
-        "id": "indicator",
-        "name": "MT5 Premium Indicator",
-        "description": "Professional order flow indicator for MetaTrader 5",
-        "filename": "MT5_Premium_Indicator.ex5",
-        "version": "1.0.0",
-        "allowed_plans": ["indicator", "bundle"],
-    },
-    "algorithm": {
-        "id": "algorithm",
-        "name": "MT5 Premium Algorithm",
-        "description": "Advanced automated trading system for MetaTrader 5",
-        "filename": "MT5_Premium_Algorithm.ex5",
-        "version": "1.0.0",
-        "allowed_plans": ["algorithm", "bundle"],
-    },
-}
+PRODUCTS = {}
 
 ALLOWED_STATUSES = ["active", "trial"]
 

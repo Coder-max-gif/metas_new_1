@@ -11,3 +11,15 @@ class ContactInDB(ContactSubmit):
     id: str
     status: str = "new"
     created_at: datetime
+
+class ContactResponse(BaseModel):
+    id: str
+    name: str
+    email: str
+    subject: str
+    message: str
+    status: str
+    created_at: datetime
+    
+    class Config:
+        from_attributes = True

@@ -9,9 +9,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div>
             <div className="mb-4">
-              <img src="/logo.png" alt="Metas Logo" className="h-10 w-auto" />
+              <img src="/dark-background.png" alt="Metas Logo" className="h-12 w-auto max-w-[180px]" />
             </div>
-            <p className="text-[#9CA3AF] text-sm">
+            <p className="text-[#9CA3AF] text-sm max-w-[280px]">
               Professional Order Flow & Volume Analysis Software for Active Traders
             </p>
           </div>
@@ -31,7 +31,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li><Link to="/about" className="text-[#9CA3AF] hover:text-white transition-colors">About</Link></li>
               <li><Link to="/contact" className="text-[#9CA3AF] hover:text-white transition-colors">Contact</Link></li>
-              <li><a href="#" className="text-[#9CA3AF] hover:text-white transition-colors">Blog</a></li>
+              <li><Link to="/terms" className="text-[#9CA3AF] hover:text-white transition-colors">Terms of Service</Link></li>
               <li><a href="#" className="text-[#9CA3AF] hover:text-white transition-colors">Support</a></li>
             </ul>
           </div>

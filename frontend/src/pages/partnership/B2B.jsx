@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Building2, Shield, Headphones, Zap, ArrowRight } from 'lucide-react';
 import AnimatedSection from '../../components/AnimatedSection';
@@ -47,13 +48,15 @@ const B2B = () => {
             <p className="text-2xl text-[#9CA3AF] max-w-3xl mx-auto mb-8">
               Enterprise-grade trading solutions for brokers, prop firms, and financial institutions
             </p>
-            <motion.button
-              className="bg-[#7C3AED] text-white px-10 py-4 rounded-lg font-bold text-lg hover:shadow-2xl hover:shadow-[#7C3AED]/50 transition-all"
-              whileHover={{ scale: 1.05, translateY: -4 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Schedule Demo <ArrowRight className="inline ml-2" size={20} />
-            </motion.button>
+            <Link to="/resources/help#contact-form">
+              <motion.button
+                className="bg-[#7C3AED] text-white px-10 py-4 rounded-lg font-bold text-lg hover:shadow-2xl hover:shadow-[#7C3AED]/50 transition-all"
+                whileHover={{ scale: 1.05, translateY: -4 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Schedule Demo <ArrowRight className="inline ml-2" size={20} />
+              </motion.button>
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -114,13 +117,15 @@ const B2B = () => {
             <p className="text-xl text-[#9CA3AF] mb-8 max-w-2xl mx-auto">
               Contact our B2B team to explore custom solutions for your organization
             </p>
-            <motion.button
-              className="bg-white text-[#0B0F1A] px-10 py-4 rounded-lg font-bold text-lg hover:shadow-2xl hover:shadow-white/30 transition-all"
-              whileHover={{ scale: 1.05, translateY: -4 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Contact Sales <ArrowRight className="inline ml-2" size={20} />
-            </motion.button>
+            <Link to="/resources/help#contact-form">
+              <motion.button
+                className="bg-white text-[#0B0F1A] px-10 py-4 rounded-lg font-bold text-lg hover:shadow-2xl hover:shadow-white/30 transition-all"
+                whileHover={{ scale: 1.05, translateY: -4 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Contact Sales <ArrowRight className="inline ml-2" size={20} />
+              </motion.button>
+            </Link>
           </AnimatedSection>
         </div>
       </section>

@@ -130,7 +130,7 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
-          {/* Right Content - 3D Trading Terminal with Advanced Animations */}
+          {/* Right Content - Video */}
           <motion.div
             initial={{ opacity: 0, x: 50, rotateY: -15 }}
             animate={{ opacity: 1, x: 0, rotateY: 0 }}
@@ -138,9 +138,9 @@ const HeroSection = () => {
             className="relative"
             style={{ perspective: '1500px' }}
           >
-            {/* 3D Trading Terminal */}
+            {/* Video Container */}
             <motion.div
-              className="relative rounded-2xl overflow-hidden border border-white/20 bg-gradient-to-br from-[#1a1147] via-[#0B0F1A] to-[#1a1147] p-6"
+              className="relative rounded-2xl overflow-hidden border border-[#7C3AED]/30 bg-white"
               whileHover={{ 
                 rotateY: 3, 
                 rotateX: -3,
@@ -148,242 +148,19 @@ const HeroSection = () => {
                 transition: { duration: 0.5 }
               }}
               style={{ 
-                transformStyle: 'preserve-3d',
                 boxShadow: '0 30px 60px -12px rgba(124, 58, 237, 0.6), 0 0 100px rgba(0, 212, 255, 0.3)'
               }}
             >
-              <div className="aspect-[4/3] relative">
-                {/* Trading Terminal Header */}
-                <motion.div 
-                  className="flex items-center justify-between mb-4 pb-3 border-b border-white/10"
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                >
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-[#00D4FF] animate-pulse" />
-                    <span className="text-sm font-semibold text-white">LIVE TRADING</span>
-                  </div>
-                  <div className="flex gap-2">
-                    {['BTC', 'ETH', 'ES'].map((symbol, i) => (
-                      <motion.div
-                        key={symbol}
-                        className="px-3 py-1 rounded bg-white/5 text-xs font-bold text-[#00D4FF]"
-                        animate={{
-                          scale: [1, 1.05, 1],
-                          opacity: [0.7, 1, 0.7]
-                        }}
-                        transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
-                      >
-                        {symbol}
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-
-                {/* 3D Rotating Price Cards */}
-                <div className="grid grid-cols-3 gap-3 mb-4">
-                  {[
-                    { label: 'BTC/USD', price: '43,250', change: '+2.4%', color: '#00D4FF' },
-                    { label: 'ETH/USD', price: '2,890', change: '+1.8%', color: '#7C3AED' },
-                    { label: 'ES', price: '4,520', change: '-0.3%', color: '#ec4899' }
-                  ].map((item, index) => (
-                    <motion.div
-                      key={item.label}
-                      className="relative bg-white/5 backdrop-blur-lg rounded-lg p-3 border border-white/10"
-                      initial={{ opacity: 0, rotateX: 90, z: -100 }}
-                      animate={{ opacity: 1, rotateX: 0, z: 0 }}
-                      transition={{ 
-                        duration: 0.8, 
-                        delay: 0.6 + index * 0.2,
-                        type: 'spring'
-                      }}
-                      whileHover={{ 
-                        scale: 1.1,
-                        rotateY: 10,
-                        z: 50,
-                        boxShadow: `0 10px 30px ${item.color}60`
-                      }}
-                      style={{ transformStyle: 'preserve-3d' }}
-                    >
-                      <div className="text-[10px] text-[#9CA3AF] mb-1">{item.label}</div>
-                      <motion.div 
-                        className="text-lg font-bold text-white mb-1"
-                        animate={{
-                          scale: [1, 1.05, 1]
-                        }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                      >
-                        ${item.price}
-                      </motion.div>
-                      <div className={`text-xs font-semibold ${item.change.startsWith('+') ? 'text-[#00D4FF]' : 'text-[#ec4899]'}`}>
-                        {item.change}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* 3D Animated Candlestick Chart */}
-                <div className="relative h-32 bg-white/5 rounded-lg p-2 mb-3 overflow-hidden">
-                  <div className="absolute inset-0 flex items-end justify-around px-4 pb-4">
-                    {[65, 45, 80, 55, 90, 60, 75, 50, 85, 70, 95, 65].map((height, index) => (
-                      <motion.div
-                        key={`candle-${index}`}
-                        className="relative w-2"
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ 
-                          height: `${height}%`, 
-                          opacity: 1,
-                          y: [0, -5, 0]
-                        }}
-                        transition={{ 
-                          height: { duration: 0.8, delay: 1 + index * 0.1 },
-                          opacity: { duration: 0.5, delay: 1 + index * 0.1 },
-                          y: { duration: 2, repeat: Infinity, delay: index * 0.2 }
-                        }}
-                        whileHover={{ 
-                          scale: 1.2,
-                          zIndex: 10,
-                          filter: 'brightness(1.5)'
-                        }}
-                        style={{
-                          background: index % 2 === 0 
-                            ? 'linear-gradient(180deg, #00D4FF 0%, #7C3AED 100%)'
-                            : 'linear-gradient(180deg, #ec4899 0%, #7C3AED 100%)',
-                          boxShadow: index % 2 === 0 
-                            ? '0 0 15px rgba(0, 212, 255, 0.6)'
-                            : '0 0 15px rgba(236, 72, 153, 0.6)',
-                          borderRadius: '2px',
-                          transformStyle: 'preserve-3d'
-                        }}
-                      />
-                    ))}
-                  </div>
-
-                  {/* Animated Price Line */}
-                  <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 5 }}>
-                    <motion.path
-                      d="M 10 80 Q 50 60, 90 70 T 170 65 T 250 75 T 330 60 T 410 70"
-                      stroke="url(#priceGradient)"
-                      strokeWidth="2"
-                      fill="none"
-                      initial={{ pathLength: 0, opacity: 0 }}
-                      animate={{ pathLength: 1, opacity: 0.8 }}
-                      transition={{ duration: 2, delay: 1.5 }}
-                    />
-                    <defs>
-                      <linearGradient id="priceGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#7C3AED" />
-                        <stop offset="50%" stopColor="#ec4899" />
-                        <stop offset="100%" stopColor="#00D4FF" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                </div>
-
-                {/* Order Flow Indicators */}
-                <div className="grid grid-cols-2 gap-2">
-                  <motion.div
-                    className="bg-[#00D4FF]/10 border border-[#00D4FF]/30 rounded-lg p-2"
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 2 }}
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs text-[#9CA3AF]">BUY ORDERS</span>
-                      <motion.span 
-                        className="text-sm font-bold text-[#00D4FF]"
-                        animate={{ scale: [1, 1.1, 1] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                      >
-                        12.5K
-                      </motion.span>
-                    </div>
-                    <motion.div 
-                      className="mt-1 h-1 bg-[#00D4FF]/20 rounded-full overflow-hidden"
-                    >
-                      <motion.div
-                        className="h-full bg-[#00D4FF]"
-                        initial={{ width: '0%' }}
-                        animate={{ width: '75%' }}
-                        transition={{ duration: 1.5, delay: 2.2 }}
-                      />
-                    </motion.div>
-                  </motion.div>
-
-                  <motion.div
-                    className="bg-[#ec4899]/10 border border-[#ec4899]/30 rounded-lg p-2"
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 2.1 }}
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs text-[#9CA3AF]">SELL ORDERS</span>
-                      <motion.span 
-                        className="text-sm font-bold text-[#ec4899]"
-                        animate={{ scale: [1, 1.1, 1] }}
-                        transition={{ duration: 1.5, repeat: Infinity, delay: 0.3 }}
-                      >
-                        8.2K
-                      </motion.span>
-                    </div>
-                    <motion.div 
-                      className="mt-1 h-1 bg-[#ec4899]/20 rounded-full overflow-hidden"
-                    >
-                      <motion.div
-                        className="h-full bg-[#ec4899]"
-                        initial={{ width: '0%' }}
-                        animate={{ width: '45%' }}
-                        transition={{ duration: 1.5, delay: 2.3 }}
-                      />
-                    </motion.div>
-                  </motion.div>
-                </div>
-              </div>
-
-              {/* Glowing Orbs */}
-              <motion.div
-                className="absolute top-1/4 right-10 w-20 h-20 rounded-full bg-[#00D4FF]/20 blur-2xl"
-                animate={{
-                  scale: [1, 1.5, 1],
-                  opacity: [0.3, 0.6, 0.3]
-                }}
-                transition={{ duration: 4, repeat: Infinity }}
-              />
-              <motion.div
-                className="absolute bottom-1/4 left-10 w-16 h-16 rounded-full bg-[#7C3AED]/20 blur-2xl"
-                animate={{
-                  scale: [1, 1.3, 1],
-                  opacity: [0.3, 0.6, 0.3]
-                }}
-                transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+              {/* Video */}
+              <video 
+                src="/intro.mp4" 
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-auto"
               />
             </motion.div>
-
-            {/* Floating Data Particles Around Terminal */}
-            {[...Array(12)].map((_, i) => (
-              <motion.div
-                key={`data-particle-${i}`}
-                className="absolute w-1.5 h-1.5 rounded-full"
-                style={{
-                  background: i % 3 === 0 ? '#7C3AED' : i % 3 === 1 ? '#00D4FF' : '#ec4899',
-                  left: `${10 + (i % 4) * 25}%`,
-                  top: `${10 + Math.floor(i / 4) * 30}%`,
-                  boxShadow: `0 0 10px currentColor`
-                }}
-                animate={{
-                  y: [-20, -40, -20],
-                  x: [0, Math.sin(i) * 15, 0],
-                  opacity: [0.3, 1, 0.3],
-                  scale: [1, 1.5, 1]
-                }}
-                transition={{
-                  duration: 3 + (i % 3),
-                  repeat: Infinity,
-                  delay: i * 0.2
-                }}
-              />
-            ))}
 
             {/* Info Card Below with Enhanced Animation */}
             <motion.div

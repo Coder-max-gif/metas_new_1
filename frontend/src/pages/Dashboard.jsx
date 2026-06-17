@@ -1,24 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Download, Package, Key, TrendingUp, AlertCircle } from 'lucide-react';
+import { Download, Package, Key, TrendingUp, AlertCircle, Shield, ArrowRight, Edit2, Check, X } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
-import { dashboardAPI, downloadAPI } from '../services/api';
+import { useNavigate } from 'react-router-dom';
+import { dashboardAPI, downloadAPI, paymentsAPI, adminAPI } from '../services/api';
 
 const Dashboard = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [stats, setStats] = useState(null);
+  const [payments, setPayments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [downloading, setDownloading] = useState(null);
+  const [editingDownloads, setEditingDownloads] = useState(false);
+  const [editingLicenses, setEditingLicenses] = useState(false);
+  const [downloadsValue, setDownloadsValue] = useState(0);
+  const [licensesValue, setLicensesValue] = useState(0);
+  const [updatingStats, setUpdatingStats] = useState(false);
 
   useEffect(() => {
-    fetchDashboardStats();
+    fetchData();
   }, []);
 
-  const fetchDashboardStats = async () => {
+  const fetchData = async () => {
     try {
-      const response = await dashboardAPI.getStats();
-      setStats(response.data);
+      const [statsRes, paymentsRes] = await Promise.allSettled([
+        dashboardAPI.getStats(),
+        paymentsAPI.getMyPayments()
+      ]);
+      
+      if (statsRes.status === 'fulfilled') {
+        setStats(statsRes.value.data);
+        setDownloadsValue(statsRes.value.data?.downloads?.total || 0);
+        setLicensesValue(statsRes.value.data?.licenses?.active || 0);
+      }
+      if (paymentsRes.status === 'fulfilled') {
+        setPayments(paymentsRes.value.data);
+      }
     } catch (err) {
       setError('Failed to load dashboard data');
       console.error(err);
@@ -42,11 +61,28 @@ const Dashboard = () => {
       link.click();
       link.remove();
       
-      fetchDashboardStats();
+      fetchData();
     } catch (err) {
       alert(err.response?.data?.detail || `Failed to download ${type}`);
     } finally {
       setDownloading(null);
+    }
+  };
+
+  const handleUpdateStats = async (type) => {
+    setUpdatingStats(true);
+    try {
+      await adminAPI.updateStats({
+        downloads_total: type === 'downloads' ? parseInt(downloadsValue) : stats?.downloads?.total,
+        licenses_active: type === 'licenses' ? parseInt(licensesValue) : stats?.licenses?.active,
+      });
+      setEditingDownloads(false);
+      setEditingLicenses(false);
+      fetchData();
+    } catch (err) {
+      alert('Failed to update stats');
+    } finally {
+      setUpdatingStats(false);
     }
   };
 
@@ -62,8 +98,8 @@ const Dashboard = () => {
     );
   }
 
-  const canDownloadIndicator = stats?.subscription?.plan === 'indicator' || stats?.subscription?.plan === 'bundle';
-  const canDownloadAlgorithm = stats?.subscription?.plan === 'algorithm' || stats?.subscription?.plan === 'bundle';
+  const canDownloadIndicator = false;
+  const canDownloadAlgorithm = false;
 
   return (
     <div className="min-h-screen pt-24 pb-12 bg-gradient-to-br from-[#0B0F1A] via-[#1a1147] to-[#0B0F1A]">
@@ -73,7 +109,20 @@ const Dashboard = () => {
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <h1 className="text-4xl font-bold mb-2">Welcome back, {user?.full_name}!</h1>
+          <div className="flex items-center justify-between mb-2">
+            <h1 className="text-4xl font-bold">Welcome back, {user?.full_name}!</h1>
+            {user?.role === 'admin' && (
+              <motion.button
+                onClick={() => navigate('/admin')}
+                className="flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-[#7C3AED] to-[#00D4FF] text-white rounded-lg font-semibold"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Shield size={20} />
+                Admin Dashboard
+              </motion.button>
+            )}
+          </div>
           <p className="text-[#9CA3AF]">Manage your MT5 trading tools</p>
         </motion.div>
 
@@ -101,15 +150,15 @@ const Dashboard = () => {
               </div>
               <div>
                 <p className="text-sm text-[#9CA3AF]">Subscription</p>
-                <p className="text-2xl font-bold capitalize">{stats?.subscription?.plan || 'None'}</p>
+                <p className="text-2xl font-bold capitalize">{user?.subscription_type || 'None'}</p>
               </div>
             </div>
             <div className={`inline-block px-3 py-1 rounded-full text-sm ${
-              stats?.subscription?.status === 'active' 
+              user?.subscription_status === 'active' 
                 ? 'bg-green-500/20 text-green-500'
                 : 'bg-gray-500/20 text-gray-500'
             }`}>
-              {stats?.subscription?.status || 'Inactive'}
+              {user?.subscription_status || 'Inactive'}
             </div>
           </motion.div>
 
@@ -123,9 +172,46 @@ const Dashboard = () => {
               <div className="w-12 h-12 bg-[#00D4FF]/20 rounded-lg flex items-center justify-center">
                 <Download className="text-[#00D4FF]" size={24} />
               </div>
-              <div>
+              <div className="flex-1">
                 <p className="text-sm text-[#9CA3AF]">Total Downloads</p>
-                <p className="text-2xl font-bold">{stats?.downloads?.total || 0}</p>
+                {editingDownloads ? (
+                  <div className="flex items-center gap-2 mt-2">
+                    <input
+                      type="number"
+                      value={downloadsValue}
+                      onChange={(e) => setDownloadsValue(e.target.value)}
+                      className="w-24 bg-white/10 border border-white/20 rounded px-2 py-1 text-white text-2xl font-bold"
+                    />
+                    <button
+                      onClick={() => handleUpdateStats('downloads')}
+                      disabled={updatingStats}
+                      className="p-1 hover:bg-green-500/20 rounded"
+                    >
+                      <Check size={20} className="text-green-500" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setEditingDownloads(false);
+                        setDownloadsValue(stats?.downloads?.total || 0);
+                      }}
+                      className="p-1 hover:bg-red-500/20 rounded"
+                    >
+                      <X size={20} className="text-red-500" />
+                    </button>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    <p className="text-2xl font-bold">{stats?.downloads?.total || 0}</p>
+                    {user?.role === 'admin' && (
+                      <button
+                        onClick={() => setEditingDownloads(true)}
+                        className="p-1 hover:bg-white/10 rounded"
+                      >
+                        <Edit2 size={16} className="text-[#9CA3AF]" />
+                      </button>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           </motion.div>
@@ -140,15 +226,52 @@ const Dashboard = () => {
               <div className="w-12 h-12 bg-[#ec4899]/20 rounded-lg flex items-center justify-center">
                 <Key className="text-[#ec4899]" size={24} />
               </div>
-              <div>
+              <div className="flex-1">
                 <p className="text-sm text-[#9CA3AF]">Active Licenses</p>
-                <p className="text-2xl font-bold">{stats?.licenses?.active || 0}</p>
+                {editingLicenses ? (
+                  <div className="flex items-center gap-2 mt-2">
+                    <input
+                      type="number"
+                      value={licensesValue}
+                      onChange={(e) => setLicensesValue(e.target.value)}
+                      className="w-24 bg-white/10 border border-white/20 rounded px-2 py-1 text-white text-2xl font-bold"
+                    />
+                    <button
+                      onClick={() => handleUpdateStats('licenses')}
+                      disabled={updatingStats}
+                      className="p-1 hover:bg-green-500/20 rounded"
+                    >
+                      <Check size={20} className="text-green-500" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setEditingLicenses(false);
+                        setLicensesValue(stats?.licenses?.active || 0);
+                      }}
+                      className="p-1 hover:bg-red-500/20 rounded"
+                    >
+                      <X size={20} className="text-red-500" />
+                    </button>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    <p className="text-2xl font-bold">{stats?.licenses?.active || 0}</p>
+                    {user?.role === 'admin' && (
+                      <button
+                        onClick={() => setEditingLicenses(true)}
+                        className="p-1 hover:bg-white/10 rounded"
+                      >
+                        <Edit2 size={16} className="text-[#9CA3AF]" />
+                      </button>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -187,8 +310,18 @@ const Dashboard = () => {
                 )}
               </motion.button>
             ) : (
-              <div className="bg-yellow-500/10 border border-yellow-500/50 rounded-lg p-4 text-yellow-500 text-center">
-                Subscription required to download
+              <div className="space-y-4">
+                <div className="bg-yellow-500/10 border border-yellow-500/50 rounded-lg p-4 text-yellow-500 text-center">
+                  Subscription required to download
+                </div>
+                <motion.button
+                  onClick={() => navigate('/pricing')}
+                  className="w-full bg-white/10 text-white py-3 rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-white/20 transition-colors"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  View Pricing <ArrowRight size={20} />
+                </motion.button>
               </div>
             )}
           </motion.div>
@@ -231,12 +364,65 @@ const Dashboard = () => {
                 )}
               </motion.button>
             ) : (
-              <div className="bg-yellow-500/10 border border-yellow-500/50 rounded-lg p-4 text-yellow-500 text-center">
-                Subscription required to download
+              <div className="space-y-4">
+                <div className="bg-yellow-500/10 border border-yellow-500/50 rounded-lg p-4 text-yellow-500 text-center">
+                  Subscription required to download
+                </div>
+                <motion.button
+                  onClick={() => navigate('/pricing')}
+                  className="w-full bg-white/10 text-white py-3 rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-white/20 transition-colors"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  View Pricing <ArrowRight size={20} />
+                </motion.button>
               </div>
             )}
           </motion.div>
         </div>
+
+        {payments.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl p-8"
+          >
+            <h3 className="text-2xl font-bold mb-6">Payment History</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-white/10">
+                    <th className="text-left text-[#9CA3AF] font-semibold pb-4">Product</th>
+                    <th className="text-left text-[#9CA3AF] font-semibold pb-4">Amount</th>
+                    <th className="text-left text-[#9CA3AF] font-semibold pb-4">Date</th>
+                    <th className="text-left text-[#9CA3AF] font-semibold pb-4">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {payments.map((payment) => (
+                    <tr key={payment.id} className="border-b border-white/5">
+                      <td className="py-4">{payment.product_id}</td>
+                      <td className="py-4">${payment.amount}</td>
+                      <td className="py-4 text-[#9CA3AF]">
+                        {new Date(payment.created_at).toLocaleDateString()}
+                      </td>
+                      <td className="py-4">
+                        <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
+                          payment.status === 'approved' ? 'bg-green-500/20 text-green-400' :
+                          payment.status === 'rejected' ? 'bg-red-500/20 text-red-400' :
+                          'bg-yellow-500/20 text-yellow-400'
+                        }`}>
+                          {payment.status}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </motion.div>
+        )}
       </div>
     </div>
   );

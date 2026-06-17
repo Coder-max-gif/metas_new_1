@@ -6,28 +6,36 @@ import AnimatedSection from '../../components/AnimatedSection';
 const Marketplace = () => {
   const products = [
     {
-      id: 'footprint-pro',
-      name: 'Footprint Pro Indicator',
+      id: 'ind-arrows',
+      name: 'Arrows Indicator',
       price: '$49',
       rating: 4.9,
       sales: 1250,
-      description: 'Advanced footprint chart indicator with real-time order flow'
+      description: 'Precise entry signals with color-coded arrows for clear trading decisions'
     },
     {
-      id: 'volume-master',
-      name: 'Volume Master Pack',
-      price: '$79',
+      id: 'ind-bs-numbers',
+      name: 'B&S Numbers Indicator',
+      price: '$49',
       rating: 4.8,
       sales: 890,
-      description: 'Complete volume analysis toolkit with 15+ indicators'
+      description: 'Track buy and sell pressure with precise numerical indicators'
     },
     {
-      id: 'smart-alerts',
-      name: 'Smart Alerts System',
-      price: '$39',
+      id: 'ind-future-pattern',
+      name: 'Future Pattern Indicator',
+      price: '$49',
       rating: 4.7,
       sales: 2100,
-      description: 'Intelligent alert system for institutional order detection'
+      description: 'Identify future chart patterns for predictive trading opportunities'
+    },
+    {
+      id: 'ind-session',
+      name: 'Session Indicator',
+      price: '$49',
+      rating: 4.9,
+      sales: 1800,
+      description: 'Monitor trading sessions and time your entries perfectly'
     }
   ];
 

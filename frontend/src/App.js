@@ -14,6 +14,8 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Payment from './pages/Payment';
+import AdminDashboard from './pages/AdminDashboard';
 
 import IndicatorsPage from './pages/features/IndicatorsPage';
 import AlgorithmPage from './pages/features/AlgorithmPage';
@@ -26,6 +28,7 @@ import Marketplace from './pages/resources/Marketplace';
 import QuickStart from './pages/resources/QuickStart';
 import Community from './pages/resources/Community';
 import HelpCenter from './pages/resources/HelpCenter';
+import TermsOfService from './pages/TermsOfService';
 
 function App() {
   return (
@@ -45,10 +48,20 @@ function App() {
             
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
             <Route path="/dashboard" element={
               <ProtectedRoute>
                 <Dashboard />
+              </ProtectedRoute>
+            } />
+            <Route path="/payment" element={
+              <ProtectedRoute>
+                <Payment />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin" element={
+              <ProtectedRoute>
+                <AdminDashboard />
               </ProtectedRoute>
             } />
             <Route path="/about" element={<About />} />
@@ -61,6 +74,7 @@ function App() {
             <Route path="/resources/quick-start" element={<QuickStart />} />
             <Route path="/resources/community" element={<Community />} />
             <Route path="/resources/help" element={<HelpCenter />} />
+            <Route path="/terms" element={<TermsOfService />} />
           </Routes>
           <Footer />
         </BrowserRouter>

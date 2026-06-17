@@ -1,7 +1,10 @@
+import logging
 from config.database import get_database
 from utils.helpers import generate_license_key, utc_now
 from uuid import uuid4
 from datetime import datetime
+
+logger = logging.getLogger(__name__)
 
 class LicenseService:
     @property
@@ -9,6 +12,10 @@ class LicenseService:
         return get_database()
     
     async def generate_license(self, user_id: str, plan: str):
+        if self.db is None:
+            logger.error("Database not available for license generation")
+            raise Exception("Database unavailable")
+        
         license_key = generate_license_key()
         
         license_dict = {
@@ -27,6 +34,10 @@ class LicenseService:
         return license_key
     
     async def verify_license(self, license_key: str, mt5_account: str, machine_id: str):
+        if self.db is None:
+            logger.error("Database not available for license verification")
+            return {"valid": False, "message": "Service unavailable"}
+            
         license_doc = await self.db.licenses.find_one({"key": license_key})
         
         if not license_doc or not license_doc.get("active"):
@@ -56,5 +67,9 @@ class LicenseService:
         }
     
     async def get_user_licenses(self, user_id: str):
+        if self.db is None:
+            logger.error("Database not available for getting user licenses")
+            return []
+            
         cursor = self.db.licenses.find({"user_id": user_id, "active": True}, {"_id": 0})
         return await cursor.to_list(length=100)

@@ -1,166 +1,100 @@
 import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { BarChart3, LineChart, Activity } from 'lucide-react';
-import AnimatedSection from '../AnimatedSection';
+import { ArrowRight, TrendingUp, Activity, Zap, Target, Shield } from 'lucide-react';
+import AnimatedSection from '../../components/AnimatedSection';
 
 const FeaturesGrid = () => {
-  const { scrollYProgress } = useScroll();
-  
-  const featureCards = [
+  const features = [
     {
-      id: 'mt5-indicator',
-      icon: <BarChart3 size={32} />,
-      title: 'MT5 Premium Indicator',
-      description: 'Professional order flow indicator with real-time volume analysis',
-      color: '#7C3AED',
-      link: '/features/indicators'
+      icon: <TrendingUp size={40} />,
+      title: 'Advanced Indicators',
+      description: 'Professional trading indicators designed for MetaTrader 5',
+      gradient: 'from-[#7C3AED] to-[#00D4FF]',
+      delay: 0
     },
     {
-      id: 'mt5-algorithm',
-      icon: <Activity size={32} />,
-      title: 'MT5 Premium Algorithm',
-      description: 'Advanced automated trading system with risk management',
-      color: '#ec4899',
-      link: '/features/algorithm'
+      icon: <Activity size={40} />,
+      title: 'Real-time Data',
+      description: 'Live market data and order flow analysis',
+      gradient: 'from-[#00D4FF] to-[#ec4899]',
+      delay: 0.1
     },
     {
-      id: 'mt5-platform',
-      icon: <LineChart size={32} />,
-      title: 'MetaTrader 5 Ready',
-      description: 'Full MT5 compatibility with desktop support and instant setup',
-      color: '#00D4FF',
-      link: '/pricing'
+      icon: <Zap size={40} />,
+      title: 'Fast Execution',
+      description: 'Lightning-fast trade execution and signal generation',
+      gradient: 'from-[#ec4899] to-[#7C3AED]',
+      delay: 0.2
+    },
+    {
+      icon: <Target size={40} />,
+      title: 'Precision Trading',
+      description: 'High accuracy entry and exit signals',
+      gradient: 'from-[#7C3AED] to-[#00D4FF]',
+      delay: 0.3
+    },
+    {
+      icon: <Shield size={40} />,
+      title: 'Risk Management',
+      description: 'Advanced risk management tools and strategies',
+      gradient: 'from-[#00D4FF] to-[#ec4899]',
+      delay: 0.4
+    },
+    {
+      icon: <TrendingUp size={40} />,
+      title: 'Performance Tracking',
+      description: 'Detailed performance analytics and reporting',
+      gradient: 'from-[#ec4899] to-[#7C3AED]',
+      delay: 0.5
     }
   ];
 
   return (
-    <section className="py-24 bg-[#0F172A] relative overflow-hidden">
-      {/* Animated Background Elements */}
-      <motion.div
-        className="absolute top-20 right-20 w-64 h-64 bg-[#7C3AED]/10 rounded-full blur-[100px]"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.6, 0.3]
-        }}
-        transition={{ duration: 8, repeat: Infinity }}
-      />
-      <motion.div
-        className="absolute bottom-20 left-20 w-64 h-64 bg-[#00D4FF]/10 rounded-full blur-[100px]"
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.3, 0.6, 0.3]
-        }}
-        transition={{ duration: 10, repeat: Infinity, delay: 2 }}
-      />
-
-      <div className="max-w-[1280px] mx-auto px-8 relative z-10">
+    <section className="py-24 bg-[#0F172A]">
+      <div className="max-w-[1280px] mx-auto px-8">
         <AnimatedSection>
-          <motion.h2 
-            className="text-4xl font-bold text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            Premium MT5 Trading Suite
-          </motion.h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-center">
+            Powerful Features
+          </h2>
+          <p className="text-xl text-[#9CA3AF] text-center mb-16 max-w-2xl mx-auto">
+            Everything you need to elevate your trading game to the next level
+          </p>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8" style={{ perspective: '1000px' }}>
-          {featureCards.map((card, index) => (
-            <AnimatedSection key={card.id} delay={index * 0.1}>
-              <Link to={card.link}>
-                <motion.div
-                  className="relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl p-8 hover:border-[#7C3AED]/50 transition-all cursor-pointer group"
-                  initial={{ opacity: 0, y: 50, rotateX: 10 }}
-                  whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ 
-                    duration: 0.8, 
-                    delay: index * 0.2,
-                    type: 'spring',
-                    stiffness: 100
-                  }}
-                  whileHover={{ 
-                    scale: 1.05,
-                    rotateY: 5,
-                    rotateX: -5,
-                    translateZ: 50,
-                    boxShadow: `0 30px 80px ${card.color}40`,
-                    transition: { duration: 0.4 }
-                  }}
-                  style={{
-                    transformStyle: 'preserve-3d'
-                  }}
-                >
-                {/* Glowing Background on Hover */}
-                <motion.div
-                  className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{
-                    background: `radial-gradient(circle at 50% 50%, ${card.color}20 0%, transparent 70%)`
-                  }}
-                />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {features.map((feature, index) => (
+            <AnimatedSection key={index} delay={feature.delay}>
+              <motion.div
+                className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 hover:border-white/30 transition-all relative overflow-hidden group"
+                whileHover={{ 
+                  scale: 1.03,
+                  translateY: -8,
+                  transition: { duration: 0.3 }
+                }}
+              >
+                {/* Gradient Background on Hover */}
+                <div className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity bg-gradient-to-br ${feature.gradient}`} />
+                
+                <div className="relative z-10">
+                  <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${feature.gradient} flex items-center justify-center mb-6`}>
+                    <div className="text-white">{feature.icon}</div>
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold mb-4 text-white">
+                    {feature.title}
+                  </h3>
+                  
+                  <p className="text-[#9CA3AF] mb-6">
+                    {feature.description}
+                  </p>
 
-                {/* Animated Icon */}
-                <motion.div 
-                  className="text-[#7C3AED] mb-4 relative z-10"
-                  animate={{
-                    rotateY: [0, 360],
-                  }}
-                  transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: 'linear'
-                  }}
-                  whileHover={{
-                    scale: 1.2,
-                    rotateZ: 15,
-                    transition: { duration: 0.3 }
-                  }}
-                >
-                  {card.icon}
-                </motion.div>
-
-                {/* Content */}
-                <motion.h3 
-                  className="text-2xl font-bold mb-3 relative z-10"
-                  style={{ translateZ: '20px' }}
-                >
-                  {card.title}
-                </motion.h3>
-                <motion.p 
-                  className="text-[#9CA3AF] relative z-10"
-                  style={{ translateZ: '10px' }}
-                >
-                  {card.description}
-                </motion.p>
-
-                {/* Floating Particles */}
-                {[...Array(3)].map((_, i) => (
-                  <motion.div
-                    key={`particle-${card.id}-${i}`}
-                    className="absolute w-1 h-1 rounded-full opacity-0 group-hover:opacity-100"
-                    style={{
-                      background: card.color,
-                      left: `${20 + i * 30}%`,
-                      top: `${20 + i * 20}%`,
-                    }}
-                    animate={{
-                      y: [-10, -30, -10],
-                      opacity: [0, 1, 0],
-                      scale: [0, 1.5, 0]
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      delay: i * 0.3
-                    }}
-                  />
-                ))}
+                  <Link to="/features" className="flex items-center gap-2 text-[#00D4FF] hover:gap-4 transition-all">
+                    Learn more <ArrowRight size={18} />
+                  </Link>
+                </div>
               </motion.div>
-            </Link>
-          </AnimatedSection>
+            </AnimatedSection>
           ))}
         </div>
       </div>

@@ -81,4 +81,24 @@ export const subscriptionAPI = {
   getMySubscription: () => api.get('/api/subscriptions/me'),
 };
 
+export const paymentsAPI = {
+  getProducts: () => api.get('/api/payments/products'),
+  createPayment: (formData) => api.post('/api/payments/create', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  }),
+  getMyPayments: () => api.get('/api/payments/my-payments'),
+};
+
+export const adminAPI = {
+  getAllUsers: () => api.get('/api/admin/users'),
+  getAllPayments: () => api.get('/api/admin/payments'),
+  approvePayment: (paymentId) => api.patch(`/api/admin/payments/${paymentId}/approve`),
+  rejectPayment: (paymentId) => api.patch(`/api/admin/payments/${paymentId}/reject`),
+  getAllContacts: () => api.get('/api/admin/contacts'),
+  resolveContact: (contactId) => api.patch(`/api/admin/contacts/${contactId}/resolve`),
+  updateStats: (data) => api.patch('/api/admin/stats', data),
+};
+
 export default api;

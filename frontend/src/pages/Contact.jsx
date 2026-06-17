@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, MessageSquare, Send } from 'lucide-react';
 import AnimatedSection from '../components/AnimatedSection';
+import { contactAPI } from '../services/api';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -10,10 +11,24 @@ const Contact = () => {
     subject: '',
     message: ''
   });
+  const [statusMessage, setStatusMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Form submission logic would go here
+    setIsSubmitting(true);
+    setStatusMessage('');
+
+    try {
+      await contactAPI.submit(formData);
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setStatusMessage('Your message has been sent successfully. It will appear in the admin dashboard shortly.');
+    } catch (error) {
+      console.error('Contact form submission failed:', error);
+      setStatusMessage('Failed to send your message. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -106,12 +121,16 @@ const Contact = () => {
 
                   <motion.button
                     type="submit"
-                    className="w-full bg-[#7C3AED] text-white py-3 rounded-lg font-semibold hover:shadow-2xl hover:shadow-[#7C3AED]/50 transition-all flex items-center justify-center gap-2"
+                    disabled={isSubmitting}
+                    className="w-full bg-[#7C3AED] text-white py-3 rounded-lg font-semibold hover:shadow-2xl hover:shadow-[#7C3AED]/50 transition-all flex items-center justify-center gap-2 disabled:cursor-not-allowed disabled:bg-[#4f3bb7]"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    Send Message <Send size={20} />
+                    {isSubmitting ? 'Sending...' : 'Send Message'} <Send size={20} />
                   </motion.button>
+                  {statusMessage && (
+                    <p className="mt-4 text-sm text-white/80">{statusMessage}</p>
+                  )}
                 </form>
               </div>
             </AnimatedSection>

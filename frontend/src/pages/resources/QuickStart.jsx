@@ -82,15 +82,48 @@ const QuickStart = () => {
         </div>
       </section>
 
-      {/* Video Tutorial */}
+      {/* Video Tutorials */}
       <section className="py-24 bg-[#0F172A]">
         <div className="max-w-[1280px] mx-auto px-8">
           <AnimatedSection>
-            <h2 className="text-4xl font-bold text-center mb-12">Video Walkthrough</h2>
-            <div className="aspect-video bg-gradient-to-br from-[#1a1147] to-[#0B0F1A] rounded-2xl border border-white/10 flex items-center justify-center">
-              <Play size={80} className="text-white/40" />
-            </div>
+            <h2 className="text-4xl font-bold text-center mb-12">Video Tutorials</h2>
           </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <AnimatedSection delay={0.1}>
+              <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6">
+                <h3 className="text-2xl font-bold mb-4">Indicator Tutorial</h3>
+                <div className="aspect-video rounded-xl overflow-hidden border border-white/10">
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src="https://www.youtube.com/embed/CW_q1c-1f14"
+                    title="Indicator Tutorial"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.2}>
+              <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6">
+                <h3 className="text-2xl font-bold mb-4">Algorithm Tutorial</h3>
+                <div className="aspect-video rounded-xl overflow-hidden border border-white/10">
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src="https://www.youtube.com/embed/hXGOVgqSR5g"
+                    title="Algorithm Tutorial"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </div>
+            </AnimatedSection>
+          </div>
         </div>
       </section>
 

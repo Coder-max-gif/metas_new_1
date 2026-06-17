@@ -1,168 +1,48 @@
-import React, { useEffect, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
-import AnimatedSection from '../AnimatedSection';
+import React from 'react';
+import { motion } from 'framer-motion';
+import AnimatedSection from '../../components/AnimatedSection';
 
 const StatsSection = () => {
   const stats = [
-    { 
-      id: 'mt5-compatibility',
-      number: 1,
-      suffix: '',
-      title: 'MT5 Platform', 
-      description: 'Full MetaTrader 5 compatibility with desktop support' 
+    {
+      label: 'Users',
+      value: '100k+',
+      change: '+20%'
     },
-    { 
-      id: 'premium-indicator',
-      number: 1,
-      suffix: '',
-      title: 'Premium Indicator', 
-      description: 'Professional order flow indicator designed for MT5'
+    {
+      label: 'Markets',
+      value: '10,000+',
+      change: '+15%'
     },
-    { 
-      id: 'algorithm',
-      number: 1,
-      suffix: '',
-      title: 'Powerful Algorithm', 
-      description: 'Advanced automated trading system for MetaTrader 5' 
+    {
+      label: 'Active Traders',
+      value: '50K+',
+      change: '+25%'
     },
-    { 
-      id: 'execution',
-      number: 100,
-      suffix: '%',
-      title: 'Execution Speed', 
-      description: 'Lightning-fast order execution and signal processing' 
+    {
+      label: 'Daily Volume',
+      value: '5M+',
+      change: '+18%'
     }
   ];
 
-  const Counter = ({ target, suffix, delay }) => {
-    const [count, setCount] = useState(0);
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true });
-
-    useEffect(() => {
-      if (isInView) {
-        let start = 0;
-        const duration = 2000;
-        const increment = target / (duration / 16);
-        
-        const timer = setInterval(() => {
-          start += increment;
-          if (start >= target) {
-            setCount(target);
-            clearInterval(timer);
-          } else {
-            setCount(Math.floor(start));
-          }
-        }, 16);
-
-        return () => clearInterval(timer);
-      }
-    }, [isInView, target]);
-
-    return (
-      <motion.span 
-        ref={ref}
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : {}}
-        transition={{ duration: 0.5, delay }}
-      >
-        {count}{suffix}
-      </motion.span>
-    );
-  };
-
   return (
-    <section 
-      className="py-24 relative overflow-hidden"
-      style={{
-        background: 'linear-gradient(180deg, #05070F 0%, #1e293b 8%, #cbd5e1 18%, #F8FAFC 30%, #FFFFFF 60%, #F1F5F9 100%)'
-      }}
-    >
-      {/* Subtle dot pattern */}
-      <div 
-        className="absolute inset-0 opacity-[0.15] pointer-events-none"
-        style={{
-          backgroundImage: `radial-gradient(rgba(124, 58, 237, 0.4) 1.2px, transparent 1.2px)`,
-          backgroundSize: '28px 28px',
-          maskImage: 'linear-gradient(180deg, transparent 0%, transparent 25%, black 40%, black 100%)',
-          WebkitMaskImage: 'linear-gradient(180deg, transparent 0%, transparent 25%, black 40%, black 100%)'
-        }}
-      />
-
-      {/* Animated Background Shapes */}
-      <motion.div
-        className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-[#7C3AED]/15 rounded-full blur-3xl"
-        animate={{
-          y: [0, -30, 0],
-          scale: [1, 1.2, 1]
-        }}
-        transition={{ duration: 5, repeat: Infinity }}
-      />
-      <motion.div
-        className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#00D4FF]/15 rounded-full blur-3xl"
-        animate={{
-          y: [0, 30, 0],
-          scale: [1, 1.3, 1]
-        }}
-        transition={{ duration: 6, repeat: Infinity, delay: 1 }}
-      />
-
-      <div className="max-w-[1280px] mx-auto px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <section className="py-20 bg-[#0B0F1A]">
+      <div className="max-w-[1280px] mx-auto px-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
-            <AnimatedSection key={stat.id} delay={index * 0.1}>
-              <motion.div 
-                className="text-center"
-                initial={{ opacity: 0, scale: 0.5 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: index * 0.1,
-                  type: 'spring',
-                  stiffness: 100
-                }}
-                whileHover={{ 
-                  scale: 1.1,
-                  transition: { duration: 0.3 }
-                }}
-              >
-                <motion.h2 
-                  className="text-6xl font-bold mb-4 bg-gradient-to-r from-[#7C3AED] via-[#ec4899] to-[#00D4FF] bg-clip-text text-transparent"
-                  animate={{
-                    backgroundPosition: ['0%', '100%', '0%']
-                  }}
-                  transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: 'linear'
-                  }}
-                  style={{
-                    backgroundSize: '200% 200%'
-                  }}
-                >
-                  <Counter target={stat.number} suffix={stat.suffix} delay={index * 0.2} />
-                </motion.h2>
-                <motion.h3 
-                  className="text-xl font-semibold mb-2 text-[#0B0F1A]"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5 + index * 0.1 }}
-                >
-                  {stat.title}
-                </motion.h3>
-                <motion.p 
-                  className="text-[#6B7280]"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.6 + index * 0.1 }}
-                >
-                  {stat.description}
-                </motion.p>
-              </motion.div>
+            <AnimatedSection key={index} delay={index * 0.1}>
+              <div className="text-center">
+                <div className="text-4xl md:text-5xl font-bold text-[#7C3AED] mb-2">
+                  {stat.value}
+                </div>
+                <div className="text-lg text-white mb-1">
+                  {stat.label}
+                </div>
+                <div className="text-sm text-[#00D4FF] font-semibold">
+                  {stat.change}
+                </div>
+              </div>
             </AnimatedSection>
           ))}
         </div>

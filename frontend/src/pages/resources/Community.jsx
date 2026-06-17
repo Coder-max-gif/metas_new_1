@@ -1,14 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Users2, MessageSquare, Trophy, Calendar } from 'lucide-react';
+import { Users2, Send, Trophy, Calendar } from 'lucide-react';
 import AnimatedSection from '../../components/AnimatedSection';
 
 const Community = () => {
   const communityFeatures = [
     {
-      id: 'discord',
-      icon: <MessageSquare size={40} />,
-      title: 'Discord Server',
+      id: 'telegram',
+      icon: <Send size={40} />,
+      title: 'Telegram Group',
       description: '15,000+ active traders sharing strategies and insights',
       members: '15K+'
     },
@@ -57,7 +57,7 @@ const Community = () => {
               whileHover={{ scale: 1.05, translateY: -4 }}
               whileTap={{ scale: 0.98 }}
             >
-              Join Discord
+              Join Telegram
             </motion.button>
           </motion.div>
         </div>

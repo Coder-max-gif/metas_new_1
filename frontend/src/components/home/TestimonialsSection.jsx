@@ -1,85 +1,116 @@
 import React from 'react';
-import AnimatedSection from '../AnimatedSection';
+import { motion } from 'framer-motion';
+import AnimatedSection from '../../components/AnimatedSection';
 
 const TestimonialsSection = () => {
   const testimonials = [
     {
-      id: 'luca-d',
-      name: 'Luca D',
-      country: 'DE',
-      date: 'Feb 1, 2023',
-      rating: 5,
-      text: 'better than EXOcharts. easy to use, has everything you need. crypto data is free, you can really get down to the specific info you need.',
-      bgColor: 'bg-green-600'
+      quote: 'The indicators have completely transformed my trading strategy. I\'ve seen a 40% increase in my win rate.',
+      name: 'Raj Patel',
+      role: 'Professional Trader',
+      avatar: 'RP'
     },
     {
-      id: 'jeremy-bartoli',
-      name: 'Jeremy Bartoli',
-      country: 'ES',
-      date: 'Aug 25, 2025',
-      rating: 5,
-      text: 'Thank you so much for everything. A top-quality technical service. If you need an assessment, just ask. Thank you so much.',
-      bgColor: 'bg-cyan-600'
+      quote: 'Excellent service and amazing support. The algorithm is super accurate and easy to use.',
+      name: 'Priya Sharma',
+      role: 'Day Trader',
+      avatar: 'PS'
     },
     {
-      id: 'sarah-chen',
-      name: 'Sarah Chen',
-      country: 'US',
-      date: 'Jun 26, 2025',
-      rating: 5,
-      text: 'Best footprint platform. Essential tool for any serious trader. The volume analysis features are unmatched.',
-      bgColor: 'bg-purple-600'
+      quote: 'Best investment I\'ve made for my trading career. The tools are professional and reliable.',
+      name: 'Arjun Reddy',
+      role: 'Swing Trader',
+      avatar: 'AR'
+    },
+    {
+      quote: 'The indicators are spot on! My profits have doubled.',
+      name: 'Neha Gupta',
+      role: 'Forex Trader',
+      avatar: 'NG'
+    },
+    {
+      quote: 'Great experience! The algorithm works flawlessly.',
+      name: 'Karan Singh',
+      role: 'Crypto Trader',
+      avatar: 'KS'
+    },
+    {
+      quote: 'Customer support is fantastic and indicators are very helpful.',
+      name: 'Anjali Mehta',
+      role: 'Options Trader',
+      avatar: 'AM'
+    },
+    {
+      quote: 'I highly recommend these indicators to all traders!',
+      name: 'Vikram Desai',
+      role: 'Scalper',
+      avatar: 'VD'
+    },
+    {
+      quote: 'The signals are very accurate and timely.',
+      name: 'Pooja Iyer',
+      role: 'Swing Trader',
+      avatar: 'PI'
     }
   ];
 
-  return (
-    <section className="py-24 bg-gradient-to-br from-[#F8FAFC] to-[#E5E7EB]">
-      <div className="max-w-[1280px] mx-auto px-8">
-        <AnimatedSection>
-          <h2 className="text-4xl font-bold text-center mb-16 text-[#0B0F1A]">
-            Trusted by Professional Traders
-          </h2>
-        </AnimatedSection>
+  // Duplicate for seamless loop
+  const allTestimonials = [...testimonials, ...testimonials];
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <AnimatedSection key={testimonial.id} delay={index * 0.1}>
-              <div className="bg-white rounded-xl p-6 shadow-lg h-full">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold ${testimonial.bgColor}`}>
-                      {testimonial.name.charAt(0)}
+  return (
+    <section className="py-24 bg-[#0B0F1A] overflow-hidden">
+      <div className="max-w-[1280px] mx-auto px-8 mb-16">
+        <AnimatedSection>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-white">
+            What Our Traders Say
+          </h2>
+          <p className="text-lg text-[#9CA3AF] text-center max-w-2xl mx-auto">
+            Join thousands of successful traders who trust our tools
+          </p>
+        </AnimatedSection>
+      </div>
+
+      {/* Marquee */}
+      <div className="overflow-hidden">
+        <motion.div
+          className="flex gap-8"
+          animate={{
+            x: [0, -2800],
+          }}
+          transition={{
+            x: {
+              duration: 60,
+              repeat: Infinity,
+              ease: "linear",
+            },
+          }}
+        >
+          {allTestimonials.map((testimonial, index) => (
+            <div
+              key={`${testimonial.name}-${index}`}
+              className="flex-shrink-0 w-[350px]"
+            >
+              <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8">
+                <p className="text-[#9CA3AF] mb-8 text-base">
+                  {testimonial.quote}
+                </p>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-r from-[#7C3AED] to-[#00D4FF] flex items-center justify-center text-lg font-bold text-white">
+                    {testimonial.avatar}
+                  </div>
+                  <div>
+                    <div className="text-white font-medium text-base">
+                      {testimonial.name}
                     </div>
-                    <div>
-                      <p className="font-semibold text-[#0B0F1A]">{testimonial.name}</p>
-                      <p className="text-sm text-[#6B7280]">{testimonial.country}</p>
+                    <div className="text-[#9CA3AF] text-sm">
+                      {testimonial.role}
                     </div>
                   </div>
-                  <p className="text-sm text-[#6B7280]">{testimonial.date}</p>
                 </div>
-                <div className="flex gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <div key={`star-${testimonial.id}-${i}`} className="w-5 h-5 bg-teal-500 rounded-sm" />
-                  ))}
-                </div>
-                <p className="text-[#0B0F1A]">{testimonial.text}</p>
               </div>
-            </AnimatedSection>
-          ))}
-        </div>
-
-        {/* Press Section */}
-        <AnimatedSection delay={0.4}>
-          <div className="mt-20">
-            <h3 className="text-2xl font-bold text-center mb-10 text-[#0B0F1A]">In the Press:</h3>
-            <div className="flex flex-wrap items-center justify-center gap-12 opacity-60">
-              <div className="text-3xl font-bold text-[#0B0F1A]">TRADERS'</div>
-              <div className="text-3xl font-bold text-[#0B0F1A]">Yahoo! Finance</div>
-              <div className="text-2xl font-bold text-[#0B0F1A]">FT FINANCIAL TIMES</div>
-              <div className="text-2xl font-bold text-[#0B0F1A] border-2 border-[#0B0F1A] px-4 py-2">FINANCE MAGNATES</div>
             </div>
-          </div>
-        </AnimatedSection>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
