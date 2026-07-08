@@ -25,7 +25,7 @@ const Navbar = () => {
   const partnershipLinks = [
     { name: 'Referral Program', path: '/partnership/referral' },
     { name: 'B2B', path: '/partnership/b2b' },
-    { name: 'Merit Capital Markets', path: 'https://meritcapitalmarkets.com/', external: true }
+    { name: 'Merit Capital Markets', path: '/partnership/trading-partner' }
   ];
 
   const resourcesLinks = [
