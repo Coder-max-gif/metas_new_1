@@ -24,7 +24,8 @@ const Navbar = () => {
 
   const partnershipLinks = [
     { name: 'Referral Program', path: '/partnership/referral' },
-    { name: 'B2B', path: '/partnership/b2b' }
+    { name: 'B2B', path: '/partnership/b2b' },
+    { name: 'Merit Capital Markets', path: 'https://meritcapitalmarkets.com/', external: true }
   ];
 
   const resourcesLinks = [
@@ -48,16 +49,31 @@ const Navbar = () => {
           isLight ? 'bg-white/95 border-gray-200' : 'bg-[#0F172A]/95 border-white/10'
         }`}>
           {links.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={`block px-4 py-2 transition-colors ${
-                isLight ? 'text-gray-700 hover:text-[#7C3AED] hover:bg-gray-100' : 'text-[#E5E7EB] hover:text-white hover:bg-white/5'
-              }`}
-              onClick={() => setActiveDropdown(null)}
-            >
-              {link.name}
-            </Link>
+            link.external ? (
+              <a
+                key={link.path}
+                href={link.path}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`block px-4 py-2 transition-colors ${
+                  isLight ? 'text-gray-700 hover:text-[#7C3AED] hover:bg-gray-100' : 'text-[#E5E7EB] hover:text-white hover:bg-white/5'
+                }`}
+                onClick={() => setActiveDropdown(null)}
+              >
+                {link.name}
+              </a>
+            ) : (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`block px-4 py-2 transition-colors ${
+                  isLight ? 'text-gray-700 hover:text-[#7C3AED] hover:bg-gray-100' : 'text-[#E5E7EB] hover:text-white hover:bg-white/5'
+                }`}
+                onClick={() => setActiveDropdown(null)}
+              >
+                {link.name}
+              </Link>
+            )
           ))}
         </div>
       </motion.div>

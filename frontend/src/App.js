@@ -23,6 +23,7 @@ import AIAnalystPage from './pages/features/AIAnalystPage';
 
 import ReferralProgram from './pages/partnership/ReferralProgram';
 import B2B from './pages/partnership/B2B';
+import TradingPartner from './pages/partnership/TradingPartner';
 
 import Marketplace from './pages/resources/Marketplace';
 import QuickStart from './pages/resources/QuickStart';
@@ -69,6 +70,7 @@ function App() {
             
             <Route path="/partnership/referral" element={<ReferralProgram />} />
             <Route path="/partnership/b2b" element={<B2B />} />
+            <Route path="/partnership/trading-partner" element={<TradingPartner />} />
             
             <Route path="/resources/marketplace" element={<Marketplace />} />
             <Route path="/resources/quick-start" element={<QuickStart />} />
