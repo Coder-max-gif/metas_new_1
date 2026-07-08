@@ -7,10 +7,10 @@ import { paymentsAPI } from '../services/api';
 import AnimatedSection from '../components/AnimatedSection';
 
 const PRODUCTS = [
-  {id: 'ind-tma', name: 'TMA Band Indicator', price: 49, period: '6 months'},
-  {id: 'ind-bs-numbers', name: 'B&S Numbers Indicator', price: 49, period: '6 months'},
-  {id: 'ind-future-pattern', name: 'Future Pattern Indicator', price: 49, period: '6 months'},
-  {id: 'ind-session', name: 'Session Indicator', price: 49, period: '6 months'},
+  {id: 'ind-tma', name: 'SNIPER BAND X', price: 49, period: '6 months'},
+  {id: 'ind-bs-numbers', name: 'PULSE X-RAY', price: 49, period: '6 months'},
+  {id: 'ind-future-pattern', name: 'DEJA VU AI', price: 49, period: '6 months'},
+  {id: 'ind-session', name: 'THE 24H MATRIX', price: 49, period: '6 months'},
   {id: 'all-indicators', name: 'All Indicators (Bundle)', price: 99, period: '6 months'},
   {id: 'algo-premium', name: 'Premium Algorithm', price: 99, period: '1 month'}
 ];

@@ -12,13 +12,14 @@ import { useScrollHeader } from '../hooks/useScrollHeader';
 const indicators = [
   {
     id: 'ind-tma',
-    name: 'TMA Band Indicator',
+    name: 'SNIPER BAND X',
     price: '$49',
     period: '/6 months',
     icon: <Activity size={32} />,
     gradient: 'from-[#7C3AED] to-[#00D4FF]',
     features: [
-      'Real-time TMA band entries',
+      'Real-time trend band entries',
+      'Precision arrow signals',
       'Multi-timeframe support',
       'Custom alerts',
       'MT5 Desktop compatible',
@@ -30,14 +31,14 @@ const indicators = [
   },
   {
     id: 'ind-bs-numbers',
-    name: 'B&S Numbers Indicator',
+    name: 'PULSE X-RAY',
     price: '$49',
     period: '/6 months',
     icon: <Target size={32} />,
     gradient: 'from-[#ec4899] to-[#7C3AED]',
     features: [
-      'Buy & Sell numbers',
-      'Volume analysis',
+      'Live buyer vs seller pressure',
+      'Order flow visualization',
       'Custom alerts',
       'MT5 Desktop compatible',
       'Email support',
@@ -48,14 +49,14 @@ const indicators = [
   },
   {
     id: 'ind-future-pattern',
-    name: 'Future Pattern Indicator',
+    name: 'DEJA VU AI',
     price: '$49',
     period: '/6 months',
     icon: <TrendingUp size={32} />,
     gradient: 'from-[#00D4FF] to-[#7C3AED]',
     features: [
-      'Pattern recognition',
-      'Predictive analysis',
+      'AI pattern recognition',
+      'Forward price projection',
       'Custom alerts',
       'MT5 Desktop compatible',
       'Email support',
@@ -66,15 +67,15 @@ const indicators = [
   },
   {
     id: 'ind-session',
-    name: 'Session Indicator',
+    name: 'THE 24H MATRIX',
     price: '$49',
     period: '/6 months',
     icon: <Clock size={32} />,
     gradient: 'from-[#7C3AED] to-[#ec4899]',
     features: [
-      'Trading session tracking',
-      'Time-based alerts',
-      'Customizable',
+      'Live session tracking',
+      'Session volume profile',
+      'Customizable session times',
       'MT5 Desktop compatible',
       'Email support',
       'Installation guide'
@@ -113,7 +114,7 @@ const ProductCard = ({ plan, index, darkMode = true }) => {
   return (
     <AnimatedSection delay={index * 0.1}>
       <motion.div
-        className={`relative rounded-2xl p-8 h-full flex flex-col ${
+        className={`relative rounded-2xl p-8 h-full min-h-[560px] flex flex-col justify-between text-left ${
           darkMode 
             ? (plan.popular
                 ? 'bg-gradient-to-br from-[#7C3AED]/20 to-[#00D4FF]/20 border-2 border-[#7C3AED]'

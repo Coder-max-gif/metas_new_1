@@ -7,40 +7,40 @@ import { useAuth } from '../../context/AuthContext';
 
 const indicators = [
   {
-    name: 'TMA Band Indicator',
+    name: 'SNIPER BAND X',
     id: 'ind-tma',
     price: '$49 for 6 months',
     icon: <Activity size={40} />,
     gradient: 'from-[#7C3AED] to-[#00D4FF]',
-    features: ['Real-time TMA band entries', 'Multi-timeframe support', 'Custom alerts', 'MT5 compatible', 'Email support', 'Installation guide'],
-    description: 'Precise entry signals using TMA bands for clearer trading decisions'
+    features: ['Real-time trend band entries', 'Precision arrow signals', 'Multi-timeframe support', 'Custom alerts', 'MT5 Desktop compatible', 'Email support', 'Installation guide'],
+    description: 'Real-time trend band entries with precision arrow signals for better MT5 entries.'
   },
   {
-    name: 'B&S Numbers Indicator',
+    name: 'PULSE X-RAY',
     id: 'ind-bs-numbers',
     price: '$49 for 6 months',
     icon: <Target size={40} />,
     gradient: 'from-[#ec4899] to-[#7C3AED]',
-    features: ['Buy & Sell numbers', 'Volume analysis', 'Custom alerts', 'MT5 compatible', 'Email support', 'Installation guide'],
-    description: 'Track buy and sell pressure with precise numerical indicators'
+    features: ['Live buyer vs seller pressure', 'Order flow visualization', 'Custom alerts', 'MT5 Desktop compatible', 'Email support', 'Installation guide'],
+    description: 'Live buyer vs seller pressure and order flow visualization for sharper trade timing.'
   },
   {
-    name: 'Future Pattern Indicator',
+    name: 'DEJA VU AI',
     id: 'ind-future-pattern',
     price: '$49 for 6 months',
     icon: <TrendingUp size={40} />,
     gradient: 'from-[#00D4FF] to-[#7C3AED]',
-    features: ['Pattern recognition', 'Predictive analysis', 'Custom alerts', 'MT5 compatible', 'Email support', 'Installation guide'],
-    description: 'Identify future chart patterns for predictive trading opportunities'
+    features: ['AI pattern recognition', 'Forward price projection', 'Custom alerts', 'MT5 Desktop compatible', 'Email support', 'Installation guide'],
+    description: 'AI-powered pattern recognition with forward price projection for next-level setups.'
   },
   {
-    name: 'Session Indicator',
+    name: 'THE 24H MATRIX',
     id: 'ind-session',
     price: '$49 for 6 months',
     icon: <Clock size={40} />,
     gradient: 'from-[#7C3AED] to-[#ec4899]',
-    features: ['Trading session tracking', 'Time-based alerts', 'Customizable', 'MT5 compatible', 'Email support', 'Installation guide'],
-    description: 'Monitor trading sessions and time your entries perfectly'
+    features: ['Live session tracking', 'Session volume profile', 'Customizable session times', 'MT5 Desktop compatible', 'Email support', 'Installation guide'],
+    description: 'Live session tracking and session volume profile for optimal market timing.'
   }
 ];
 

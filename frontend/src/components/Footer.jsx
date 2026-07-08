@@ -19,10 +19,9 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-semibold mb-4">FEATURES</h4>
             <ul className="space-y-2">
-              <li><Link to="/features/charts" className="text-[#9CA3AF] hover:text-white transition-colors">Footprint Charts</Link></li>
               <li><Link to="/features/indicators" className="text-[#9CA3AF] hover:text-white transition-colors">Indicators</Link></li>
-              <li><Link to="/features/trading" className="text-[#9CA3AF] hover:text-white transition-colors">Trading Interface</Link></li>
-              <li><Link to="/features/liquidity" className="text-[#9CA3AF] hover:text-white transition-colors">Liquidity Analysis</Link></li>
+              <li><span className="text-[#9CA3AF]">Trading Interface</span></li>
+              <li><span className="text-[#9CA3AF]">Liquidity Analysis</span></li>
             </ul>
           </div>
 
@@ -39,8 +38,8 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-semibold mb-4">PARTNERSHIP</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-[#9CA3AF] hover:text-white transition-colors">Become Partner</a></li>
-              <li><a href="#" className="text-[#9CA3AF] hover:text-white transition-colors">Affiliate Program</a></li>
+              <li><Link to="/contact" className="text-[#9CA3AF] hover:text-white transition-colors">Become Partner</Link></li>
+              <li><Link to="/contact" className="text-[#9CA3AF] hover:text-white transition-colors">Affiliate Program</Link></li>
             </ul>
           </div>
         </div>

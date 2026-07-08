@@ -9,16 +9,6 @@ const HeroSection = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
-  const features = [
-    { id: 'mt5-indicator', name: 'MT5 Premium Indicator' },
-    { id: 'mt5-algorithm', name: 'MT5 Premium Algorithm' },
-    { id: 'order-flow', name: 'Order Flow Analysis' },
-    { id: 'automation', name: 'Trading Automation' },
-    { id: 'risk-mgmt', name: 'Risk Management' },
-    { id: 'mt5-compatible', name: 'MetaTrader 5 Compatible' },
-    { id: 'real-time', name: 'Real-Time Execution' }
-  ];
-
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
       {/* Background Gradient */}
@@ -110,24 +100,6 @@ const HeroSection = () => {
                 Start for Free <ArrowRight size={20} />
               </motion.button>
             </Link>
-
-            {/* Vertical Feature List with Stagger Animation */}
-            <div className="space-y-0 border-l-2 border-white/10">
-              {features.map((feature, index) => (
-                <motion.div
-                  key={feature.id}
-                  className={`pl-6 py-3 border-l-2 -ml-[2px] transition-all cursor-pointer ${
-                    index === 2 ? 'border-[#7C3AED] bg-gradient-to-r from-[#7C3AED]/10 to-transparent' : 'border-transparent hover:border-white/30'
-                  }`}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.8 + index * 0.1 }}
-                  whileHover={{ x: 10, transition: { duration: 0.2 } }}
-                >
-                  <span className={index === 2 ? 'text-white font-medium' : 'text-[#9CA3AF]'}>{feature.name}</span>
-                </motion.div>
-              ))}
-            </div>
           </motion.div>
 
           {/* Right Content - Video */}

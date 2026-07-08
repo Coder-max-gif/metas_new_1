@@ -7,39 +7,39 @@ const Marketplace = () => {
   const products = [
     {
       id: 'ind-tma',
-      name: 'TMA Band Indicator',
+      name: 'SNIPER BAND X',
       image: '/TMA.png',
       price: '$49',
       rating: 4.9,
       sales: 1250,
-      description: 'Precise entry signals using TMA bands for clearer trading decisions'
+      description: 'Real-time trend band entries with precision arrow signals for clearer trading decisions'
     },
     {
       id: 'ind-bs-numbers',
-      name: 'B&S Numbers Indicator',
+      name: 'PULSE X-RAY',
       image: '/B&S.png',
       price: '$49',
       rating: 4.8,
       sales: 890,
-      description: 'Track buy and sell pressure with precise numerical indicators'
+      description: 'Live buyer vs seller pressure and order flow visualization for sharper trade timing'
     },
     {
       id: 'ind-future-pattern',
-      name: 'Future Pattern Indicator',
+      name: 'DEJA VU AI',
       image: '/FP.png',
       price: '$49',
       rating: 4.7,
       sales: 2100,
-      description: 'Identify future chart patterns for predictive trading opportunities'
+      description: 'AI pattern recognition with forward price projection for predictive trading opportunities'
     },
     {
       id: 'ind-session',
-      name: 'Session Indicator',
+      name: 'THE 24H MATRIX',
       image: '/Sessions.png',
       price: '$49',
       rating: 4.9,
       sales: 1800,
-      description: 'Monitor trading sessions and time your entries perfectly'
+      description: 'Live session tracking and volume profile analysis for perfect market timing'
     }
   ];
 

@@ -63,7 +63,7 @@ const QuickStart = () => {
                 title: 'Contact Us',
                 description: 'Reach out directly for support or custom setup assistance.',
                 actionText: 'Email support',
-                actionLink: 'mailto:support@example.com',
+                actionLink: 'mailto:hamantakumarmalik@gmail.com',
                 external: true
               },
               {
