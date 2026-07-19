@@ -1,13 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, TrendingUp } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+
+const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
 const HeroSection = () => {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, -200]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+
+  const handlePointerMove = (event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+    const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+    setTilt({
+      x: clamp(x * 16, -16, 16),
+      y: clamp(y * 16, -16, 16),
+    });
+  };
+
+  const handlePointerLeave = () => setTilt({ x: 0, y: 0 });
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
@@ -102,7 +117,7 @@ const HeroSection = () => {
             </Link>
           </motion.div>
 
-          {/* Right Content - Video */}
+          {/* Right Content - Image Showcase */}
           <motion.div
             initial={{ opacity: 0, x: 50, rotateY: -15 }}
             animate={{ opacity: 1, x: 0, rotateY: 0 }}
@@ -110,28 +125,37 @@ const HeroSection = () => {
             className="relative"
             style={{ perspective: '1500px' }}
           >
-            {/* Video Container */}
             <motion.div
-              className="relative rounded-2xl overflow-hidden border border-[#7C3AED]/30 bg-white"
-              whileHover={{ 
-                rotateY: 3, 
-                rotateX: -3,
+              className="relative mx-auto w-full max-w-[720px] aspect-[4/3]"
+              onMouseMove={handlePointerMove}
+              onMouseLeave={handlePointerLeave}
+              whileHover={{
+                rotateY: 5,
+                rotateX: -4,
                 scale: 1.02,
-                transition: { duration: 0.5 }
+                transition: { duration: 0.4 }
               }}
-              style={{ 
-                boxShadow: '0 30px 60px -12px rgba(124, 58, 237, 0.6), 0 0 100px rgba(0, 212, 255, 0.3)'
-              }}
+              style={{ transformStyle: 'preserve-3d', perspective: '1800px' }}
             >
-              {/* Video */}
-              <video 
-                src="/intro.mp4" 
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-auto"
-              />
+              <div className="absolute inset-0 rounded-[2.3rem] border border-white/10 bg-gradient-to-br from-[#11182d] via-[#0d1325] to-[#11182d] p-3 shadow-[0_35px_80px_-20px_rgba(124,58,237,0.7),0_0_140px_rgba(0,212,255,0.2)]" />
+              <div className="absolute inset-[10px] rounded-[2rem] border border-white/10 bg-[#070b14] p-2 md:p-3" />
+              <div className="absolute inset-[22px] overflow-hidden rounded-[1.6rem] border border-white/10 bg-black shadow-inner">
+                <img src="/monitor.jpeg" alt="Trading monitor display" className="h-full w-full object-cover scale-[0.94]" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#00D4FF]/15 via-transparent to-[#7C3AED]/20" />
+              </div>
+
+              <motion.div
+                className="absolute inset-[32px] flex items-center justify-center p-4 md:p-6"
+                animate={{ x: tilt.x, y: tilt.y }}
+                transition={{ type: 'spring', stiffness: 140, damping: 18, mass: 0.8 }}
+                style={{ rotateX: tilt.y * 0.04, rotateY: tilt.x * -0.04, transformStyle: 'preserve-3d' }}
+              >
+                <img src="/indicators-Photoroom.png" alt="Trading indicators overlay" className="h-auto w-full max-w-[112%] object-contain drop-shadow-[0_35px_70px_rgba(0,0,0,0.45)]" />
+              </motion.div>
+
+              <div className="absolute left-1/2 top-[10px] h-3 w-24 -translate-x-1/2 rounded-b-full bg-black/60" />
+              <div className="absolute bottom-[10px] left-1/2 h-3 w-24 -translate-x-1/2 rounded-t-full bg-black/60" />
+              <div className="pointer-events-none absolute inset-[18px] rounded-[1.7rem] border border-white/10" />
             </motion.div>
 
             {/* Info Card Below with Enhanced Animation */}

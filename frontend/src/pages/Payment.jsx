@@ -150,8 +150,12 @@ const Payment = () => {
 
               <div className="mt-8">
                 <h3 className="text-lg font-semibold mb-4">Payment Instructions</h3>
-                <div className="bg-white/5 rounded-lg p-6 flex items-center justify-center overflow-hidden">
-                  <img src="/payment.jpg" alt="Payment Instructions" className="w-full h-auto rounded-lg" />
+                <div className="bg-white/5 rounded-lg p-6 flex flex-col items-center justify-center overflow-hidden gap-4">
+                  <img src="/qr.png" alt="Payment QR code" className="w-full max-w-[260px] h-auto rounded-lg border border-white/10" />
+                  <div className="w-full rounded-lg border border-white/10 bg-black/20 p-4 text-center">
+                    <p className="text-sm text-[#9CA3AF] mb-2">Wallet Address</p>
+                    <p className="break-all text-sm font-medium text-[#00D4FF]">TP1rWyN9VYLLfb9QeanmqxqTgM7Mm3eGU5</p>
+                  </div>
                 </div>
               </div>
             </div>
