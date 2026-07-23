@@ -1,217 +1,118 @@
-import React, { useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
-const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
-
 const HeroSection = () => {
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-
-  const handlePointerMove = (event) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
-    const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
-    setTilt({
-      x: clamp(x * 16, -16, 16),
-      y: clamp(y * 16, -16, 16),
-    });
-  };
-
-  const handlePointerLeave = () => setTilt({ x: 0, y: 0 });
-
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
-      {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0B0F1A] via-[#1a1147] to-[#0B0F1A]" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#7C3AED]/20 via-transparent to-[#00D4FF]/20" />
-      
-      {/* Animated Floating Bars - Left Side with Parallax */}
-      <motion.div 
-        className="absolute left-0 top-1/2 -translate-y-1/2 space-y-4 opacity-60"
-        style={{ y }}
-      >
-        <motion.div
-          className="h-16 bg-gradient-to-r from-[#7C3AED] to-transparent rounded-r-lg blur-sm"
-          style={{ width: '200px' }}
-          animate={{ 
-            width: ['200px', '280px', '200px'],
-            x: [0, 20, 0]
-          }}
-          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          className="h-12 bg-gradient-to-r from-[#00D4FF] to-transparent rounded-r-lg blur-sm"
-          style={{ width: '150px' }}
-          animate={{ 
-            width: ['150px', '220px', '150px'],
-            x: [0, 30, 0]
-          }}
-          transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-        />
-        <motion.div
-          className="h-14 bg-gradient-to-r from-[#ec4899] to-transparent rounded-r-lg blur-sm"
-          style={{ width: '180px' }}
-          animate={{ 
-            width: ['180px', '260px', '180px'],
-            x: [0, 25, 0]
-          }}
-          transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        />
-        <motion.div
-          className="h-10 bg-gradient-to-r from-[#7C3AED] to-transparent rounded-r-lg blur-sm"
-          style={{ width: '120px' }}
-          animate={{ 
-            width: ['120px', '200px', '120px'],
-            x: [0, 15, 0]
-          }}
-          transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
-        />
-      </motion.div>
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-20 bg-[#080b14]">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0e1a] to-[#080b14]" />
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[55%] h-[70%] bg-[#7C3AED]/10 blur-[120px] rounded-full" />
 
-      <div className="relative z-10 max-w-[1280px] mx-auto px-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="relative z-10 max-w-[1400px] mx-auto px-8 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-12 items-center">
           {/* Left Content */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            style={{ opacity, scale }}
+            transition={{ duration: 0.7 }}
           >
-            <motion.h1 
-              className="text-6xl md:text-7xl font-bold leading-tight mb-6"
+            <motion.h1
+              className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight text-white mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.7, delay: 0.15 }}
             >
-              Trade <span className="text-[#7C3AED]">Smarter</span>
+              New{' '}
+              <span className="bg-gradient-to-r from-[#7C3AED] via-[#c026d3] to-[#00D4FF] bg-clip-text text-transparent">
+                level
+              </span>
               <br />
-              Execute
+              of market
               <br />
-              Faster
+              transparency
             </motion.h1>
-            <motion.p 
-              className="text-xl text-[#E5E7EB] mb-8 max-w-lg"
+
+            <motion.p
+              className="text-lg text-[#9CA3AF] mb-10 max-w-md"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
             >
-              Premium Indicator & Algorithm Suite for MetaTrader 5
+              Professional Order Flow &amp; Volume Analysis Software for Active Traders
             </motion.p>
-            
-            <Link to="/login">
-              <motion.button
-                className="bg-[#7C3AED] text-white px-8 py-4 rounded-lg font-semibold flex items-center gap-2 mb-12 hover:shadow-2xl hover:shadow-[#7C3AED]/50 transition-all"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                whileHover={{ scale: 1.05, translateY: -4 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Start for Free <ArrowRight size={20} />
-              </motion.button>
-            </Link>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.45 }}
+            >
+              <Link to="/login">
+                <motion.button
+                  className="group inline-flex items-center gap-3 bg-gradient-to-r from-[#7C3AED] to-[#5B4FE9] text-white font-semibold px-6 py-4 rounded-lg shadow-lg shadow-[#7C3AED]/30 hover:shadow-xl hover:shadow-[#7C3AED]/50 transition-shadow"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Start for free
+                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/15 group-hover:bg-white/25 transition-colors">
+                    <ArrowRight size={16} />
+                  </span>
+                </motion.button>
+              </Link>
+            </motion.div>
           </motion.div>
 
-          {/* Right Content - Image Showcase */}
+          {/* Right Content - Monitor Visual */}
           <motion.div
-            initial={{ opacity: 0, x: 50, rotateY: -15 }}
-            animate={{ opacity: 1, x: 0, rotateY: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="relative"
-            style={{ perspective: '1500px' }}
+            className="relative lg:w-[130%]"
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.9, delay: 0.2 }}
           >
-            <motion.div
-              className="relative mx-auto w-full max-w-[720px] aspect-[4/3]"
-              onMouseMove={handlePointerMove}
-              onMouseLeave={handlePointerLeave}
-              whileHover={{
-                rotateY: 5,
-                rotateX: -4,
-                scale: 1.02,
-                transition: { duration: 0.4 }
-              }}
-              style={{ transformStyle: 'preserve-3d', perspective: '1800px' }}
-            >
-              <div className="absolute inset-0 rounded-[2.3rem] border border-white/10 bg-gradient-to-br from-[#11182d] via-[#0d1325] to-[#11182d] p-3 shadow-[0_35px_80px_-20px_rgba(124,58,237,0.7),0_0_140px_rgba(0,212,255,0.2)]" />
-              <div className="absolute inset-[10px] rounded-[2rem] border border-white/10 bg-[#070b14] p-2 md:p-3" />
-              <div className="absolute inset-[22px] overflow-hidden rounded-[1.6rem] border border-white/10 bg-black shadow-inner">
-                <img src="/monitor.jpeg" alt="Trading monitor display" className="h-full w-full object-cover scale-[0.94]" />
-                <div className="absolute inset-0 bg-gradient-to-br from-[#00D4FF]/15 via-transparent to-[#7C3AED]/20" />
-              </div>
-
-              <motion.div
-                className="absolute inset-[32px] flex items-center justify-center p-4 md:p-6"
-                animate={{ x: tilt.x, y: tilt.y }}
-                transition={{ type: 'spring', stiffness: 140, damping: 18, mass: 0.8 }}
-                style={{ rotateX: tilt.y * 0.04, rotateY: tilt.x * -0.04, transformStyle: 'preserve-3d' }}
-              >
-                <img src="/indicators-Photoroom.png" alt="Trading indicators overlay" className="h-auto w-full max-w-[112%] object-contain drop-shadow-[0_35px_70px_rgba(0,0,0,0.45)]" />
-              </motion.div>
-
-              <div className="absolute left-1/2 top-[10px] h-3 w-24 -translate-x-1/2 rounded-b-full bg-black/60" />
-              <div className="absolute bottom-[10px] left-1/2 h-3 w-24 -translate-x-1/2 rounded-t-full bg-black/60" />
-              <div className="pointer-events-none absolute inset-[18px] rounded-[1.7rem] border border-white/10" />
-            </motion.div>
-
-            {/* Info Card Below with Enhanced Animation */}
-            <motion.div
-              className="mt-8 bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl p-6 relative overflow-hidden"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1 }}
-              whileHover={{ 
-                scale: 1.03, 
-                translateY: -8,
-                rotateX: 2,
-                boxShadow: '0 25px 50px rgba(124, 58, 237, 0.5)',
-                transition: { duration: 0.3 }
-              }}
-              style={{ transformStyle: 'preserve-3d' }}
-            >
-              {/* Animated Background Gradient */}
-              <motion.div
-                className="absolute inset-0 opacity-30"
-                animate={{
-                  background: [
-                    'radial-gradient(circle at 0% 0%, rgba(124, 58, 237, 0.4) 0%, transparent 50%)',
-                    'radial-gradient(circle at 100% 100%, rgba(0, 212, 255, 0.4) 0%, transparent 50%)',
-                    'radial-gradient(circle at 0% 0%, rgba(124, 58, 237, 0.4) 0%, transparent 50%)'
-                  ]
-                }}
-                transition={{ duration: 5, repeat: Infinity }}
+            <div className="relative">
+              <img
+                src="/monitor.jpeg"
+                alt="Trading monitor display"
+                className="w-full h-auto select-none pointer-events-none"
               />
 
-              <div className="relative z-10">
-                <h3 className="text-2xl font-bold mb-2 text-white">Wide range of markets</h3>
-                <p className="text-[#9CA3AF] mb-4">
-                  Connect to over 25 top exchanges within a single volume analysis trading platform
-                </p>
-                <Link to="/features" className="text-[#00D4FF] flex items-center gap-2 hover:gap-3 transition-all">
-                  Learn more <ArrowRight size={18} />
-                </Link>
-                <Link to="/login" className="block mt-4">
-                  <motion.button
-                    className="bg-[#7C3AED] text-white px-6 py-3 rounded-lg font-semibold w-full hover:shadow-lg hover:shadow-[#7C3AED]/50 transition-all relative overflow-hidden"
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                      animate={{ x: ['-100%', '200%'] }}
-                      transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
-                    />
-                    <span className="relative z-10 flex items-center justify-center gap-2">
-                      Start for free <ArrowRight size={18} />
-                    </span>
-                  </motion.button>
-                </Link>
+              {/* Chart overlay positioned on the monitor screen */}
+              <div className="absolute left-[5.5%] right-[11%] top-[17%] bottom-[33%] overflow-hidden rounded-sm">
+                <img
+                  src="/indicators-Photoroom.png"
+                  alt="Order flow and volume chart"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#00D4FF]/10 via-transparent to-[#7C3AED]/20" />
+
+                {/* Floating stat badges */}
+                <motion.div
+                  className="absolute left-[8%] top-[10%] flex flex-col items-start gap-1"
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                >
+                  <span className="text-[10px] font-semibold text-[#00D4FF]">+15%</span>
+                  <span className="w-6 h-[2px] bg-[#00D4FF]" />
+                </motion.div>
+                <motion.div
+                  className="absolute left-[45%] top-[6%] flex flex-col items-start gap-1"
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+                >
+                  <span className="text-[10px] font-semibold text-[#00D4FF]">-27%</span>
+                  <span className="w-6 h-[2px] bg-[#00D4FF]" />
+                </motion.div>
+                <motion.div
+                  className="absolute right-[6%] top-[2%] flex flex-col items-start gap-1"
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+                >
+                  <span className="text-[10px] font-semibold text-[#00D4FF]">+500</span>
+                  <span className="w-6 h-[2px] bg-[#00D4FF]" />
+                </motion.div>
               </div>
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>
