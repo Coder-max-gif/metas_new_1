@@ -97,11 +97,11 @@ const Navbar = () => {
       <div className="max-w-[1480px] mx-auto px-8 py-2">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <img 
-              src={isLightMode ? '/light-background.png' : '/dark-background.png'} 
-              alt="Metas Logo" 
-              className="h-16 w-auto transform-gpu scale-105" 
+          <Link to="/" className="flex items-center h-16 overflow-visible">
+            <img
+              src={isLightMode ? '/light-background.png' : '/dark-background.png'}
+              alt="Metas Logo"
+              className="h-28 w-auto transform-gpu"
             />
           </Link>
 

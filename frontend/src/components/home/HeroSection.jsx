@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
+const HERO_TITLE = 'New level\nof market\ntransparency';
+const GRADIENT_START = HERO_TITLE.indexOf('level');
+const GRADIENT_END = GRADIENT_START + 'level'.length;
+const TYPE_SPEED_MS = 55;
+const TYPE_START_DELAY_MS = 300;
+
 const HeroSection = () => {
+  const [typedCount, setTypedCount] = useState(0);
+
+  useEffect(() => {
+    if (typedCount >= HERO_TITLE.length) return undefined;
+    const delay = typedCount === 0 ? TYPE_START_DELAY_MS : TYPE_SPEED_MS;
+    const timer = setTimeout(() => setTypedCount((count) => count + 1), delay);
+    return () => clearTimeout(timer);
+  }, [typedCount]);
+
+  const isTypingDone = typedCount >= HERO_TITLE.length;
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20 bg-[#080b14]">
       {/* Background */}
@@ -18,35 +35,44 @@ const HeroSection = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
           >
-            <motion.h1
-              className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight text-white mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.15 }}
-            >
-              New{' '}
-              <span className="bg-gradient-to-r from-[#7C3AED] via-[#c026d3] to-[#00D4FF] bg-clip-text text-transparent">
-                level
-              </span>
-              <br />
-              of market
-              <br />
-              transparency
-            </motion.h1>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight text-white mb-6 min-h-[3.2em]">
+              {HERO_TITLE.slice(0, typedCount).split('').map((char, index) => {
+                if (char === '\n') return <br key={index} />;
+                const isGradient = index >= GRADIENT_START && index < GRADIENT_END;
+                return (
+                  <span
+                    key={index}
+                    className={
+                      isGradient
+                        ? 'bg-gradient-to-r from-[#7C3AED] via-[#c026d3] to-[#00D4FF] bg-clip-text text-transparent'
+                        : undefined
+                    }
+                  >
+                    {char}
+                  </span>
+                );
+              })}
+              <motion.span
+                className="inline-block w-[4px] md:w-[6px] bg-white align-middle ml-1"
+                style={{ height: '0.85em' }}
+                animate={{ opacity: [1, 1, 0, 0] }}
+                transition={{ duration: 0.9, repeat: Infinity, times: [0, 0.5, 0.5, 1] }}
+              />
+            </h1>
 
             <motion.p
               className="text-lg text-[#9CA3AF] mb-10 max-w-md"
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
+              animate={isTypingDone ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
             >
               Professional Order Flow &amp; Volume Analysis Software for Active Traders
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.45 }}
+              animate={isTypingDone ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.15 }}
             >
               <Link to="/login">
                 <motion.button
@@ -78,11 +104,11 @@ const HeroSection = () => {
               />
 
               {/* Chart overlay positioned on the monitor screen */}
-              <div className="absolute left-[5.5%] right-[11%] top-[17%] bottom-[33%] overflow-hidden rounded-sm">
+              <div className="absolute left-[5.96%] right-[11.55%] top-[18.1%] bottom-[35.8%] overflow-hidden rounded-sm bg-black">
                 <img
-                  src="/indicators-Photoroom.png"
+                  src="/indicators-cropped.png"
                   alt="Order flow and volume chart"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain scale-100"
                 />
                 <div className="absolute inset-0 bg-gradient-to-br from-[#00D4FF]/10 via-transparent to-[#7C3AED]/20" />
 
